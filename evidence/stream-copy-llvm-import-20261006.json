@@ -1,0 +1,32 @@
+{
+  "schema": "radiance_stream_copy_llvm_import.v1",
+  "scope": "handwritten LLVM IR imported to LLVM-dialect MLIR and returned to native Muon object; no typed Muon/MX op lowering",
+  "reference_import": {
+    "schema": "radiance_llvm_reference_import.v1",
+    "status": "native_object_emitted",
+    "scope": "LLVM dialect source-equivalence reference; no typed Muon/MX lowering",
+    "input_llvm": "/scratch/agustin/projects/muon-mlir/build/stream_full_timing_all/copy/source.ll",
+    "input_sha256": "457f0c976150467b999f1807c31fa0bf5e4a2874ba7ea3ea050d2d845689d6fe",
+    "mlir_sha256": "9214a7cb235f06e35f864132d8459059bcaf56f8d85fb9177187b9ff0acf0d84",
+    "exported_llvm_sha256": "7b68c65d1a64b74d8fd783295c6459dd1f4a459c9d0c28b509e691f516520846",
+    "native_llvm_sha256": "d92cc468c1e5e02cf6dcdd4eaa482ed64beb9939defea567e2ae450206532248",
+    "native_object_sha256": "ec9d91a0ae694694dd9c1efedce5ea798e9fcbfead1bbbda9a642725b569f7d2",
+    "removed_captures_none_attributes": 1,
+    "inline_asm_ops": 1
+  },
+  "source_elf_sha256": "255927e5303769ce45119b86a51045c0ae536e0028290b80b3f77e92343f2a57",
+  "imported_elf_sha256": "08f6c275893c44490a76963aa530339ccc4baf25e11f0a5476ec994cdf46bc16",
+  "cyclotron_config_sha256": "70ef96c088c01caf3093bdff649fdb1926ea60ee68c4fcbd98af5edbf6dbf508",
+  "cyclotron_checker_sha256": "01f66d5cce3fec1c161046dbab6c910cf9cbcb04603e238e15de7a9899b27cc7",
+  "kind": "copy",
+  "elements": 1048576,
+  "source": {
+    "output_digest": "49fabae987622325",
+    "cycles": 2104119
+  },
+  "imported": {
+    "output_digest": "49fabae987622325",
+    "cycles": 2102449
+  },
+  "all_outputs_and_guards_checked": true
+}
