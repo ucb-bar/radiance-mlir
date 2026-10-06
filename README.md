@@ -6,6 +6,14 @@ define a third compute dialect. Merlin remains target agnostic; its existing
 explicit OOT provider interface is the intended entry point once an
 executable compiler package is qualified.
 
+The source-anchored PyTorch → latest model2MLIR → typed MLIR capture path is
+documented in [docs/model2mlir_frontend.md](docs/model2mlir_frontend.md).
+STREAM Copy/Scale/Add/Triad and SIMT GEMM have complete source-formula or
+source-golden output checks before capture. The separate MX FP8 GEMM capture
+uses the MX package's quantization adapter and emits a verified MX handoff.
+These are frontend checks; end-to-end Muon distribution, MX commands, and
+mixed-engine execution remain to be implemented.
+
 Use the `handwritten-implementation` branches of both `muon-mlir` and
 `mx-gemmini-mlir` for the build below. The MX branch adds `readout_to_smem`
 and `wait`, which the composition tests use.

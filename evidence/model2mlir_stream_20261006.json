@@ -1,0 +1,43 @@
+{
+  "schema": "radiance_model2mlir_stream_capture.v1",
+  "status": "captured_and_parsed_not_target_lowered",
+  "source_revision": "a27f6abd24830fdc7999d872d170ab778f1e662e",
+  "source_run_sha256": "ea709456f78e3c06934b6eb626bd9077257404c0015db00ff015bb3abdafa2d3",
+  "model2mlir_revision": "1224a05f66bee0e296f2cccc292e7d0a70b74bf6",
+  "model2mlir_source_tree_sha256": "07f6f1094893f1eebaf2b269f11afb7c9488e843d37d62f6aa06d17f392fb096",
+  "model2mlir_worktree_status": [],
+  "cases": [
+    {
+      "kind": "copy",
+      "elements_compared": 1048576,
+      "expected_digest": "49fabae987622325",
+      "captured_mlir_sha256": "721aee94fedf8dd247be67e8993b80d3db01cfbc819106e37660942dfb42832b",
+      "opaque_calls": {},
+      "model2mlir_path": "fx_importer"
+    },
+    {
+      "kind": "scale",
+      "elements_compared": 1048576,
+      "expected_digest": "6e48e2288e622325",
+      "captured_mlir_sha256": "7489d8f07fc9f1d9e61fe4c22affce1bff59345a1ecfd812ed2576bb54113a7b",
+      "opaque_calls": {},
+      "model2mlir_path": "fx_importer"
+    },
+    {
+      "kind": "add",
+      "elements_compared": 1048576,
+      "expected_digest": "8bf67ebb39622325",
+      "captured_mlir_sha256": "cd20293c54c307cf5bffd182d3721adcf10795298036d8ca532aca0eec92cd68",
+      "opaque_calls": {},
+      "model2mlir_path": "fx_importer"
+    },
+    {
+      "kind": "triad",
+      "elements_compared": 1048576,
+      "expected_digest": "44cd90308b622325",
+      "captured_mlir_sha256": "de51cdd4190247d6d61518395db8da25c4afa7eec01ec8fb1996d24cd07423b3",
+      "opaque_calls": {},
+      "model2mlir_path": "fx_importer"
+    }
+  ]
+}
