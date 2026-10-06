@@ -6,6 +6,10 @@ define a third compute dialect. Merlin remains target agnostic; its existing
 explicit OOT provider interface is the intended entry point once an
 executable compiler package is qualified.
 
+Use the `handwritten-implementation` branch of `muon-mlir` and the
+`radiance-handoff` branch of `mx-gemmini-mlir` for the build below. The MX
+branch adds `readout_to_smem` and `wait`, which the composition tests use.
+
 ```text
 Merlin interface / upstream MLIR
   -> Muon SIMT ops + upstream scf/memref/arith
