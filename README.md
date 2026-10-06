@@ -85,10 +85,30 @@ MLIR, exports LLVM IR, and compiles it with the Muon LLVM 18 backend. Use an
 LLVM 23 `mlir-translate` to preserve source inline assembly. The tool removes
 LLVM 23's `captures(none)` parameter attribute and GEP no-wrap flags, which
 LLVM 18 cannot parse, and lifetime hints whose signature changed between
-releases. It rejects other capture attributes. Its JSON report records source,
-MLIR, and object hashes and counts inline assembly ops. This path provides a
+releases. It also converts LLVM 23 float and half literal spelling and removes
+`nocreateundeforpoison`. It rejects other capture attributes. Its JSON report
+records source, MLIR, and object hashes and counts inline assembly ops. This path provides a
 coverage baseline for the handwritten kernels; it does not use the typed
 Muon or MX dialect lowering passes.
+
+`tools/sweep_reference_imports.py` applies this path to every default
+Radiance ELF target in the pinned `muon-mlir` v2 inventory. It queries each
+Makefile with `make -Bn`, compiles the selected source to LLVM IR, imports and
+exports it through LLVM-dialect MLIR, and emits an RV32 object. Its arguments
+select the source worktree, Muon Clang, LLVM 23 `mlir-translate`, Muon libc++
+headers, RISC-V C headers, generated `__config_site`, and MX submodule.
+Compiler outputs stay under `--out`; each failed target retains its stage and
+diagnostic. The manifest records source Git revision, tracked worktree diff
+hash, and hashes of generated kernel inputs. The pinned result is
+`evidence/reference-sweep-prepared-20261006.json`: **110/136** objects emitted
+across **41 kernel families**. Twelve target names have no matching Muon
+object recipe in their Makefiles; fourteen fail source compilation, including
+six missing `data` files, four missing `ubench/lib.h` includes, and four
+source/header errors. The 136-target inventory is a Makefile-declared target
+count, not a claim that all 136 source targets currently build. Generated
+inputs were prepared only in an isolated source worktree; the active
+`spatter-workloads` checkout was not edited. Object emission confirms
+importability and native code generation, not executable or numerical parity.
 
 The pinned original-size STREAM Copy case in
 `evidence/stream-copy-llvm-import-20261006.json` linked the imported object

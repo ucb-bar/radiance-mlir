@@ -1,0 +1,1246 @@
+{
+  "schema": "radiance_reference_sweep.v1",
+  "source_git_revision": "a27f6abd24830fdc7999d872d170ab778f1e662e",
+  "source_provenance": {
+    "git_status_porcelain": [
+      " M kernels/fa_stable_fpga/include/fa_data.h",
+      " M kernels/flash_attention_mx/include/fa_data.h",
+      " M kernels/flash_attention_mx_stable/include/fa_data.h",
+      " M kernels/gemm_mxgemmini/mxgemm.data.fp8.m128n128k512.h"
+    ],
+    "tracked_diff_sha256": "1fe049941c597ed7b5ef5895b097dd1a9bc6d24f64f64c02704f4dd2eb729228",
+    "generated_input_sha256": {
+      "kernels/bias_add/data": "022ec28a87fcd2d74f89e8f3b176d13aaea7b4e21798f85c550a0d660b32224a",
+      "kernels/embed_scale/data": "fbeeccc757092d14abd90c155df1fceec4a309c536596e1e5b8e7d93f28af650",
+      "kernels/fa_mx_hostsf/include/fa_data.h": "b0858d5f6d728d58eaceadd63fa6a041499e7ea854ac8688fd6c3a5607c7de2c",
+      "kernels/fa_stable_fpga/include/fa_data.h": "b0858d5f6d728d58eaceadd63fa6a041499e7ea854ac8688fd6c3a5607c7de2c",
+      "kernels/flash_attention_mx/include/fa_data.h": "b0858d5f6d728d58eaceadd63fa6a041499e7ea854ac8688fd6c3a5607c7de2c",
+      "kernels/flash_attention_mx_fp6/data": "fa910922abe3509c1cf05b10ff8f4e221a59ee13ce1a46bd9a3efc14e0d4fee4",
+      "kernels/flash_attention_mx_gemma/include/fa_data.h": "af19dd2819c713394285abcbe0fc9214dc11bb1b21e270f3861b1ae088b3b63e",
+      "kernels/flash_attention_mx_gqa/include/fa_data.h": "900712a90bad7c19d311e9ed5c42800bce0cb1c34c1d2788f19c0b25e2d23e65",
+      "kernels/flash_attention_mx_stable/include/fa_data.h": "b0858d5f6d728d58eaceadd63fa6a041499e7ea854ac8688fd6c3a5607c7de2c",
+      "kernels/geglu/data": "6ea5c2c32a185abff5e79ec20c21981373373ed17436fc8f4011d407e1d6764c",
+      "kernels/gemm_mxgemmini/mxgemm.data.fp4.m128n128k1024.h": "fc420bd20dbcd2b61db815fefa67ca2650fb659f94698765a179e6538fa80728",
+      "kernels/gemm_mxgemmini/mxgemm.data.fp4.m128n128k128.h": "be8b5db02a2a90c32f8d2b35b70ac9d47d1a699ca85ccadfb705012fce050ed6",
+      "kernels/gemm_mxgemmini/mxgemm.data.fp4.m128n128k2048.h": "57d3b18403f51bf843dc78f892ed3f50e9110c559ab326755da7c05dbcd89cb7",
+      "kernels/gemm_mxgemmini/mxgemm.data.fp4.m128n128k256.h": "beb0ba7ab9f91386b85c3c1c7a94dc1bb22930ba79d01e60562ea6d4181ef42d",
+      "kernels/gemm_mxgemmini/mxgemm.data.fp4.m128n128k512.h": "0461cc975949db7d5a153fa40b3240a48c306f2ca5061bd4e69a3231a8b1528f",
+      "kernels/gemm_mxgemmini/mxgemm.data.fp4.m128n128k5632.h": "603c1d5f81de6378a82e0bc0ba54d8675e839edbc1d8cc6a70acfc735c98158f",
+      "kernels/gemm_mxgemmini/mxgemm.data.fp4.m64n64k128.h": "2ee4ca3372077130ae589e816523f4892a30233269b8e0123809a2864fc0ffcc",
+      "kernels/gemm_mxgemmini/mxgemm.data.fp4.m64n64k64.h": "a72ea53586c3f403da429bf4bfd0548f0014fa8fbc7ccdd5efae00184f24013e",
+      "kernels/gemm_mxgemmini/mxgemm.data.fp6.m128n128k2048.h": "b57ef75fc634acd21750db45202bf12ced04569701f74e0607e0f06c974da93e",
+      "kernels/gemm_mxgemmini/mxgemm.data.fp8.m128n128k128.h": "5cb6ca13479a3d56ec3e493a3000009d1dbd869594bf52bda4bcb7ef6d7aec0f",
+      "kernels/gemm_mxgemmini/mxgemm.data.fp8.m128n128k2048.h": "66e030b349cc6bbaab2384240c237428a23dc2f887ad560b339f1a2fc3034668",
+      "kernels/gemm_mxgemmini/mxgemm.data.fp8.m128n128k256.h": "55e1beffb1484e8e28cbbc0e1bc3627773b4ade00fca3938a92190d6cd3f72d6",
+      "kernels/gemm_mxgemmini/mxgemm.data.fp8.m128n128k512.h": "7c65d01a4482d99ee5ffbe0c9ad11c3f8f660e6fa0aa32472e256dd6a965fc09",
+      "kernels/gemm_mxgemmini/mxgemm.data.fp8.m128n128k5632.h": "54cb4c901c9ab1b98d2bb2b40453ef11b6067c3ecd8754bd7f5abfc7613f51c8",
+      "kernels/gemm_mxgemmini/mxgemm.data.fp8.m256n256k256.h": "d61f5358db4f6e39e51e0cf7f9867e393a67ce0c1b4d41c596d73a72d2496c70",
+      "kernels/gemm_mxgemmini/mxgemm.data.fp8.m64n64k128.h": "eb746dcb4022fa9e50b6505672a86abdcc7a5fbf280d80801767a86545173359",
+      "kernels/gemm_mxgemmini/mxgemm.data.fp8.m64n64k512.h": "30e598acb2d0cc861729b24e99985a0e26bdca6eaa28a816ba6ff7b5b34b0df0",
+      "kernels/gemm_mxgemmini/mxgemm.data.fp8.m64n64k64.h": "7a11af40d2dacc4c462086c3a820de440eb4958b1d1f872e360b7d3eab4bd9c6",
+      "kernels/gemm_mxgemmini_ws_restream/data": "d3f6e85821d863af2b58ae5aaf60d983bcb4e81689aff0dd9df9630bb2e85ba0",
+      "kernels/gemm_simt/data": "c946ad740277a88004d8e42e873dcaf15cf910d74e7c9770cded6ff203a138e7",
+      "kernels/gemma_4norm/data": "5665556676988f5b61f8b6c21adc71f9d497192d94f5e483de61d2e8b85a21c1",
+      "kernels/gemv/data": "42e252ccc41f9d2bd191b92a9bf148c6b890706cf9909a03534719a5cbbe240b",
+      "kernels/layernorm/data": "14f64acf5b0f6c2ff4f217a6a59c98e2975d73a9f02a574031f0e91fa1665d27",
+      "kernels/logit_softcap/data": "0c59690dd8d012ce2dde9589bf808a0df6daffa30d4ffdc0c7aa8642da3588ef",
+      "kernels/nearn/data": "549940285a2f08c4f8a5060eeda092a96cd9862344e7dbf92289c4d15ea44b86",
+      "kernels/patch_embed/data": "c17aae9e96879be6e84b92d16b174ceb40d29b1cd7b44dd4b583a8264f8bd9d3",
+      "kernels/pointerchase/data": "630c0bb13262bb5b8cbf5e2e56b6d575a6e4f2c4775c4b3d0db7769f057c71cf",
+      "kernels/qkv_bias/data": "9c9166435d497b233b4675884f44d4ed452e49ae2cd7448dec9d48da72dea382",
+      "kernels/rmsnorm/data": "ba06ec7ea78a648ef4189c244d15203a5acb9199481f8b1257bf7d0c1c77b1cd",
+      "kernels/rmsnorm_gemma/data": "58fd0f048bb541055a865ebcfcfdf29b28774d9f21333cf67185bc329371c7da",
+      "kernels/rmsnorm_qkv_fused/data": "6a8019ff9161236596e6ac67cf4e2638fa9e01f1fc8954147188ced9638d7f63",
+      "kernels/rope_qkv_fused/data": "1b2784403913cc32efdcb27acc98cbb0598178dc7fc601e847b2c99922ce646c",
+      "kernels/saxpy/data": "eddf163f3f19059f98cd660aac8ba50e3c096d01443afb39ec2cdb554a37ae20",
+      "kernels/sfilter/data": "2a4ce55651353c49e72c61cddc7bfca54ab6c67910cf4130e5d4f24aaf3421d7",
+      "kernels/simt_quant/data": "97c4aa31ee48de01d6891f3652096ff2b232e5c1a0852d3c61d5748a5f3f83f8",
+      "kernels/softmax/data": "ce270135ea877634278c0203defdaf146b9171ac92670f4a7a839466a9459d26",
+      "kernels/spatter/data.S": "17909a2d99be44a61decf22ad9f66dea62bc39df6517ca4734042f92c68ac455",
+      "kernels/spatter/generated/config.h": "29ebfe9d75ae5769189e86c840fc9bff735f09ee1c49d942f1f64dcc041552a3",
+      "kernels/stream/data.S": "4e6aee036d9a1d9ce334b6b267398cca4954f4f47c26fe055562a82c03e4c536",
+      "kernels/stream/generated/config.h": "7155fb0a117536d3159428a6f2e67a8e3203cc1565f914506670ce52e7bded3c",
+      "kernels/swiglu/data": "990595474ad7670c3c7f1e425c9cec1cb8ac4a454541103e66ffed7c886c85b3",
+      "kernels/test_backing_L2_fill/a_data": "ee1e791e7f81caa471a4fd31253330ac7ca0dc6f69eea87bd311c5da9f4309a3",
+      "kernels/test_backing_L2_fill/b_data": "e6b1394666f93e7909644c4b4f61d844785c5b190f268740fcad6c06a526a08a",
+      "kernels/vecadd/data": "987889e44590ce67cd05cb4bead94f5b1f0a00f955ef09b005ae09989475ac28"
+    }
+  },
+  "scope": "LLVM dialect reference import; no typed Muon/MX lowering",
+  "inventory_target_count": 136,
+  "attempted_target_count": 136,
+  "results": [
+    {
+      "family": "bad_apple",
+      "target": "bad_apple",
+      "status": "make_recipe_failed",
+      "error": "make dry run failed (2)",
+      "diagnostic": "make: *** No rule to make target 'bad_apple.mu.o'.  Stop."
+    },
+    {
+      "family": "bfs",
+      "target": "bfs1_l0",
+      "status": "native_object_emitted",
+      "llvm_sha256": "430d88a61aaa34456b38d90054d2babd5ed9ce2c8b06eefabf139e2092e65682",
+      "mlir_sha256": "abb6e56b9e681c077e8d80ec89e5380c20133f004586b08d093a889cf9d6003b",
+      "object_sha256": "604f4b019783fbfaf044610b3c484dcdb84d14ae87373f0c0ae7151a5235e7c6",
+      "inline_asm_ops": 0
+    },
+    {
+      "family": "bfs",
+      "target": "bfs2_l0",
+      "status": "native_object_emitted",
+      "llvm_sha256": "59f7980a87e1409b5034d974fd5a965f96c2fe26ebb861b6c9b0ece274f8f9e1",
+      "mlir_sha256": "31e337d542896579d34a06120e8e00be07d51d2eea40f6f15e08408dd739fcc8",
+      "object_sha256": "f9d5931fce0e5f513659753e0d4f5373c4d7b975c7066401865b9a878ef467c7",
+      "inline_asm_ops": 0
+    },
+    {
+      "family": "bfs",
+      "target": "bfs1_l1",
+      "status": "native_object_emitted",
+      "llvm_sha256": "03ee23a8268109d5f148e5c6d806f2ccbf68ad5429a2d082c0665ae54375bb7a",
+      "mlir_sha256": "9a634481425e79c9f431b989ec09a4af587008288e8657375a3338046321bc67",
+      "object_sha256": "18c74a9e8ca123c585480b4e0a360624150dff324e94313a3d1242206912cd8b",
+      "inline_asm_ops": 0
+    },
+    {
+      "family": "bfs",
+      "target": "bfs2_l1",
+      "status": "native_object_emitted",
+      "llvm_sha256": "b63b2f38ed5ab28a86b691c43e9aa5fd14425f6372a319ddfe0798f4520f2a0c",
+      "mlir_sha256": "a1c57c98ce0e12dd6ed7772c61ddd68945e1e86b259cffe427834c19259b2230",
+      "object_sha256": "e43c0b5db77aac044d53a33c9b087a9eb2edc440ddcba429b8145f72e9047138",
+      "inline_asm_ops": 0
+    },
+    {
+      "family": "bfs",
+      "target": "bfs1_l2",
+      "status": "native_object_emitted",
+      "llvm_sha256": "124cb6e912e0815f4fb009b031593cec6bcf3ae24bd1dd025860871cf3722d3d",
+      "mlir_sha256": "8db6bfb3fe2b1d8af599578c750898efcd79ce36f109e96b36cb70acc0c39da9",
+      "object_sha256": "5a7eb0705ec5d1912ef55c6e5712155df9b3886203c27072212d9ea921c6fc2c",
+      "inline_asm_ops": 0
+    },
+    {
+      "family": "bfs",
+      "target": "bfs2_l2",
+      "status": "native_object_emitted",
+      "llvm_sha256": "f0186186e853aa0f8d2062d6951192bb28479cbe23c4d81a83a00b3eb9fa03df",
+      "mlir_sha256": "de528316ae9f1bf68215df310bc02b2e269f6e80f3bbfeb7cecee18d66816ea4",
+      "object_sha256": "c1a4fed7a2a888a743b58af9e0d629197905789d39d0bbe1bc0e96f863cd6d1c",
+      "inline_asm_ops": 0
+    },
+    {
+      "family": "bias_add",
+      "target": "kernel",
+      "status": "native_object_emitted",
+      "llvm_sha256": "c40a8ab65a05e18df9fd0ab7e0ae0be8993e72fc3b6d38e70ee61455013fb94b",
+      "mlir_sha256": "42836e5e37b7ba57400ed2f1e2552b8b4d5198ef981c3e755593ab17ca6a3cf6",
+      "object_sha256": "49cbd5d1ed735622436e4899d542c47e1eb4139670cee6e832f9477f0c32ae7d",
+      "inline_asm_ops": 4
+    },
+    {
+      "family": "embed_scale",
+      "target": "kernel",
+      "status": "native_object_emitted",
+      "llvm_sha256": "9c21cb410486b6cc8efabb886666b239fa03a942ae104144e4590b14ae133476",
+      "mlir_sha256": "5ea8a29f50aff5e8f7bf14463376366fe3394743c9c8bd4ea8d4631b4fb9ab8f",
+      "object_sha256": "c187a02f19520b18a3f98fec545a489aaac8c7f23d247c10734f5e5e17c6c665",
+      "inline_asm_ops": 4
+    },
+    {
+      "family": "fa_mx_hostsf",
+      "target": "flash_attention_mx",
+      "status": "native_object_emitted",
+      "llvm_sha256": "4642ad95cb1facc0a42413ffedbb24e9755c06e7fe42a89b282b6397924a1f76",
+      "mlir_sha256": "99a9c1af3b8a27c5ebb54250949202af8e896273e3fdeeef676e0a0ac54e3c00",
+      "object_sha256": "43942648d8d894a233ac97ce397fd3a2914acaf896f364252e329999354ad4bf",
+      "inline_asm_ops": 272
+    },
+    {
+      "family": "fa_stable_fpga",
+      "target": "kernel",
+      "status": "source_compile_failed",
+      "error": "source compile failed (1)",
+      "diagnostic": "kernel.cpp:3957:5: error: use of undeclared identifier 'FA_PB_STAGE'"
+    },
+    {
+      "family": "flash_attention",
+      "target": "flash_attention",
+      "status": "source_compile_failed",
+      "error": "source compile failed (1)",
+      "diagnostic": "./flash_impl.hpp:74:30: error: call to 'fmax' is ambiguous"
+    },
+    {
+      "family": "flash_attention_mx",
+      "target": "flash_attention_mx",
+      "status": "native_object_emitted",
+      "llvm_sha256": "96ff66b142c9c5b565bdc2581e089bc4e260861a00b7f3c38427b2cdec7fc964",
+      "mlir_sha256": "99a9c1af3b8a27c5ebb54250949202af8e896273e3fdeeef676e0a0ac54e3c00",
+      "object_sha256": "43942648d8d894a233ac97ce397fd3a2914acaf896f364252e329999354ad4bf",
+      "inline_asm_ops": 272
+    },
+    {
+      "family": "flash_attention_mx_fp6",
+      "target": "kernel",
+      "status": "native_object_emitted",
+      "llvm_sha256": "d324c76937c72e855d5fd6fc252fb2e7bcae165601dbc648fef6fe8908f2e569",
+      "mlir_sha256": "56eaa5f4a46be166cf76f065f55f0707e47031d74bf91f0e54a2254a69e61cc2",
+      "object_sha256": "402a4e314bc541745c194635459e692b83d986f45a84eb4821666fad6a42a29c",
+      "inline_asm_ops": 242
+    },
+    {
+      "family": "flash_attention_mx_gemma",
+      "target": "kernel",
+      "status": "native_object_emitted",
+      "llvm_sha256": "0af485210d25cfed45aa23c789183aea0c8a29543ec080df152c0cb6c16b67f1",
+      "mlir_sha256": "e51e3f7b6ce2fc48c4627f804113395c6a22e182238286348a57c80ca3245c31",
+      "object_sha256": "a6bc73412d40d7f7f3fb0e0554332b728f72c19c67b1adb580658a3379333ffb",
+      "inline_asm_ops": 207
+    },
+    {
+      "family": "flash_attention_mx_gqa",
+      "target": "kernel",
+      "status": "native_object_emitted",
+      "llvm_sha256": "451539f495b20fbe8c0c7f2769ea5401a124baa2b849b6376e7ec763eaaabbbf",
+      "mlir_sha256": "b22b1589c8a8d44cef0436b3f0cc57bb7156f9e95f273bcdeccb7b7b7cdd9dcc",
+      "object_sha256": "61fd93f037c0a447b1c0e37c37d5b6a6c9fdae2175bdd9a3b931b602674205d8",
+      "inline_asm_ops": 199
+    },
+    {
+      "family": "flash_attention_mx_stable",
+      "target": "kernel",
+      "status": "native_object_emitted",
+      "llvm_sha256": "d62bb4007ea1208a18e1e9187821c48aecb89f3e77e7970c2ed2dfde4f790d45",
+      "mlir_sha256": "99a9c1af3b8a27c5ebb54250949202af8e896273e3fdeeef676e0a0ac54e3c00",
+      "object_sha256": "43942648d8d894a233ac97ce397fd3a2914acaf896f364252e329999354ad4bf",
+      "inline_asm_ops": 272
+    },
+    {
+      "family": "flash_attention_virgo",
+      "target": "flash_attention",
+      "status": "make_recipe_failed",
+      "error": "make dry run failed (2)",
+      "diagnostic": "make: *** No rule to make target 'flash_attention.mu.o'.  Stop."
+    },
+    {
+      "family": "fmastore",
+      "target": "kernel",
+      "status": "native_object_emitted",
+      "llvm_sha256": "4bf76ec01d5a33986b07efccb6222cac27704568a2f2f12d1a28cb32c486f565",
+      "mlir_sha256": "16c8da9f3da255a87ef12dec56f0631f702df29170d2416d18fc373bbf27cfbb",
+      "object_sha256": "0e27f2b80c0a55891cb80131f131194b23f962eb5f83a99f49b8119b2041a3ab",
+      "inline_asm_ops": 32
+    },
+    {
+      "family": "fmastore",
+      "target": "kernel_store_k1_w1",
+      "status": "native_object_emitted",
+      "llvm_sha256": "b512261f91f6d504f68d6be98d1fb4363d5c11866f7f226bf95ef9ed25e49148",
+      "mlir_sha256": "7a87bb2d344b88f29596819fc99b73de02d82965bf7e2bd887229b8f3a73edc8",
+      "object_sha256": "a2863c2250b642562d3c0010266b9e1b60b81d83159ef37fbab3b8b667b7a95b",
+      "inline_asm_ops": 8
+    },
+    {
+      "family": "fmastore",
+      "target": "kernel_store_k1_w2",
+      "status": "native_object_emitted",
+      "llvm_sha256": "de0e4074bfd7435ef92e02c80b2f63d1a1c29240887e9655f65fe1350f7ef6f4",
+      "mlir_sha256": "639b837ba476ba90799dfa1e7d533b872e8639abac11373e00292366da0453f1",
+      "object_sha256": "25d9bce97028522fd20840d0255bd786e51cd69ed1e1ca94827110da16572c04",
+      "inline_asm_ops": 8
+    },
+    {
+      "family": "fmastore",
+      "target": "kernel_store_k1_w4",
+      "status": "native_object_emitted",
+      "llvm_sha256": "bbd45d151b724273fdf2692c5af43f9d0a9dd1aea5b39fb32d29b4cc9810e577",
+      "mlir_sha256": "ba646293199131701cac1b533655174130eacdc4d965e584fdd0ede7faf91004",
+      "object_sha256": "db6b9c394d84dea2b7f8b5e42f8801d25efb34aa8301097696d1dbc6845ee276",
+      "inline_asm_ops": 8
+    },
+    {
+      "family": "fmastore",
+      "target": "kernel_store_k1_w8",
+      "status": "native_object_emitted",
+      "llvm_sha256": "b5844a7c2bbb8daccb2dce9c56c663f1e1ac4f5cf5b6611556428a393db3420a",
+      "mlir_sha256": "73e992224feab10abfa0c499d36937caaba5f6c9224b2b0370de738af1c5fd99",
+      "object_sha256": "7b4f0eb96248e861f248eedf6a0d0fb939efae06d9ecc2a8f0cc6f83945c7e9c",
+      "inline_asm_ops": 8
+    },
+    {
+      "family": "fmastore",
+      "target": "kernel_store_k2_w1",
+      "status": "native_object_emitted",
+      "llvm_sha256": "bf2f746cc32796240f3b4b31664f4c2423fbaee8dc1c938f6cc6e0afa501d5da",
+      "mlir_sha256": "e7c577f8222333530e24c660d7309228055dd60571a2bd29e9f9bba0bb47c882",
+      "object_sha256": "729513622600847943cc5367bb96617ae24ec8f91aff9dce3a702c8161cde225",
+      "inline_asm_ops": 16
+    },
+    {
+      "family": "fmastore",
+      "target": "kernel_store_k2_w2",
+      "status": "native_object_emitted",
+      "llvm_sha256": "7c19db6f88aa1878f109e09765eadf57555dd54e86df651c990600c87b4db437",
+      "mlir_sha256": "d277a88e5959a88868cec4e9c42e06fdb0842924d4fa5cb494dc49d5f01deb55",
+      "object_sha256": "6115ef3717ae4194c8361ce3d9468a6eb6494e4cebdc11cf5b04728b7d6cfde3",
+      "inline_asm_ops": 16
+    },
+    {
+      "family": "fmastore",
+      "target": "kernel_store_k2_w4",
+      "status": "native_object_emitted",
+      "llvm_sha256": "a5db7db7ebb99c37803c493006734838fbf5fa56c9842a8811ef0a6bb6fa31b9",
+      "mlir_sha256": "f4cc2f7ad9507180bbca21be0a0cc2ef8bf09f2291b49e7adab648c0193419a7",
+      "object_sha256": "60649c77f063187204273b066175ce5bd7aca6ce51f2f7234caa4a3bf0754ab9",
+      "inline_asm_ops": 16
+    },
+    {
+      "family": "fmastore",
+      "target": "kernel_store_k2_w8",
+      "status": "native_object_emitted",
+      "llvm_sha256": "e5c00a4c06bc3b10e065ab3edfd7e1e33cd8eb80b7071a0e32f1928863575b2f",
+      "mlir_sha256": "1872a6a6c858e2e575b3c1ddeab3627caeb434d93dc390b8c041ec8d77095c4d",
+      "object_sha256": "632392200fd4f25adcc509a2d03c451fb6bb29c2a1e2a3ed0f31177c95c69676",
+      "inline_asm_ops": 16
+    },
+    {
+      "family": "fmastore",
+      "target": "kernel_store_k4_w1",
+      "status": "native_object_emitted",
+      "llvm_sha256": "539c8d0d1b002bceb7a16cf6f06bfb003eac89fecf6fd34b5e4b42346f319b87",
+      "mlir_sha256": "16c8da9f3da255a87ef12dec56f0631f702df29170d2416d18fc373bbf27cfbb",
+      "object_sha256": "0e27f2b80c0a55891cb80131f131194b23f962eb5f83a99f49b8119b2041a3ab",
+      "inline_asm_ops": 32
+    },
+    {
+      "family": "fmastore",
+      "target": "kernel_store_k4_w2",
+      "status": "native_object_emitted",
+      "llvm_sha256": "5df3d90b6bdf2dc774015504f213b1e975c1ed9b4868ce3d3b5f68bc52003a22",
+      "mlir_sha256": "e9a7532a4c5c9a676ca6d4b0e261f464b77644d9e12805b20a0b44abf22391c5",
+      "object_sha256": "aa358c01bf173fa38e019e8d039f77313f4126a06ca7e3246214d4643ab0e76b",
+      "inline_asm_ops": 32
+    },
+    {
+      "family": "fmastore",
+      "target": "kernel_store_k4_w4",
+      "status": "native_object_emitted",
+      "llvm_sha256": "b5809e978fe327869fe43287556d2196341c24c62b799170a35cdb55463cb65c",
+      "mlir_sha256": "7f90b9f3319c3dca3ef9b9b8701b69a915d043785eccc4ccbb312d4ab6cdc5e1",
+      "object_sha256": "6f15534d72c760366fe938484b7226f805b43c35f9428a04b3999533252a46bd",
+      "inline_asm_ops": 32
+    },
+    {
+      "family": "fmastore",
+      "target": "kernel_store_k4_w8",
+      "status": "native_object_emitted",
+      "llvm_sha256": "506dbcf3baef9cb7a70e511a9c0baa617861ada8adbc4a70ce3fea33fae2ae47",
+      "mlir_sha256": "3fe97ea9f20c1ba044787459982c7ae466e48e79b8ad13b5fa319c02918f82b7",
+      "object_sha256": "0e57d1b033390bcf2d6f3936e10125593acc5aabeb2ae07a01efda987a293645",
+      "inline_asm_ops": 32
+    },
+    {
+      "family": "fmastore",
+      "target": "kernel_store_k8_w1",
+      "status": "native_object_emitted",
+      "llvm_sha256": "d92563844c1840f1a0e619e8634303ca6b01edc060e1282eff082442907c1236",
+      "mlir_sha256": "2ecacdcc8e6ebc9a8263674b577667f90e0aaa673e5ec77a019d1387f32a2b34",
+      "object_sha256": "ec7f9ad13963bf545927d248e0a609df8795932cb2dc9b41c297155f5a083407",
+      "inline_asm_ops": 64
+    },
+    {
+      "family": "fmastore",
+      "target": "kernel_store_k8_w2",
+      "status": "native_object_emitted",
+      "llvm_sha256": "16c139429e753db4afa3a9bbf4140cd30c2e404c885352a5379024fddaf558ae",
+      "mlir_sha256": "70a8586f3e85ac41def76c379acfc157d4bc5bfd9268d8fa4faecf1299bcb32c",
+      "object_sha256": "89ced94958b44cd39c67c3a9e7df73cdef9bcacf582a3a07c5add715518ad65d",
+      "inline_asm_ops": 64
+    },
+    {
+      "family": "fmastore",
+      "target": "kernel_store_k8_w4",
+      "status": "native_object_emitted",
+      "llvm_sha256": "5c8b4834b1401e820f6e7e78dd5cc1d209279bb6398f4554950e06e63cda1863",
+      "mlir_sha256": "e165a4598ea2759763603c8fbf0bee5c8b37f8f4912375da9b8603deac569c94",
+      "object_sha256": "91b254d61e5f90d2e3ec8210eb094bdb9301957ac12f633ec24ed28bd0249889",
+      "inline_asm_ops": 64
+    },
+    {
+      "family": "fmastore",
+      "target": "kernel_store_k8_w8",
+      "status": "native_object_emitted",
+      "llvm_sha256": "1a942e487fa4a612a739edfdf1106cc4274680c3711127f0bb646e4f030a2434",
+      "mlir_sha256": "91c55f496a35b0dd30e0eec53238ad14eedae5c36fad7c3fd7c2396a2dd9cdba",
+      "object_sha256": "2dca5d152171a64cdebb5b7a05576772c8a2ae56ea7cf7aeaec55045ac311f59",
+      "inline_asm_ops": 64
+    },
+    {
+      "family": "fmastore",
+      "target": "kernel_fmadd_k1_w1",
+      "status": "native_object_emitted",
+      "llvm_sha256": "7c4071baa2981151e32f2a7574e54907325434116270f179a0546b0bea1a9ec1",
+      "mlir_sha256": "e0e2819f5ef1b128ff25b932e29be1955238b97410864ddb9788d4918735908d",
+      "object_sha256": "f93179989eccefb33c02fbbfe595f988d4ff8a07755f72b83ca80d810960edaa",
+      "inline_asm_ops": 16
+    },
+    {
+      "family": "fmastore",
+      "target": "kernel_fmadd_k2_w1",
+      "status": "native_object_emitted",
+      "llvm_sha256": "8f65a0072dc3491b60871b4c40a296c9750057820216c0e68b32f53afec2557d",
+      "mlir_sha256": "e2202384230880afc2f459e0cad97b59d6f987fd7ce07023d5d05531b33dc357",
+      "object_sha256": "dc1e40adf39aaffc7995517bcbe9554098e49700377b1ec1c2fdcc98d98367ab",
+      "inline_asm_ops": 32
+    },
+    {
+      "family": "fmastore",
+      "target": "kernel_fmadd_k4_w1",
+      "status": "native_object_emitted",
+      "llvm_sha256": "6a6661a9933f51f1e6c7ae6471cc83c4adc9ca4f65073355a0ad298ada7e370e",
+      "mlir_sha256": "6607915a11033a62514e048bc529f5871e9f643b1c9b33be2ce1a8b84ed7e4d1",
+      "object_sha256": "1cb131af067c391a38bf67d582c5303aafec631968aabd453d4e0662cf6da797",
+      "inline_asm_ops": 64
+    },
+    {
+      "family": "fmastore",
+      "target": "kernel_fmadd_k8_w1",
+      "status": "native_object_emitted",
+      "llvm_sha256": "4c7f067bbb1817522e2f643047a56b0ea523402ccbdc7cd2c657aa7def51e9f9",
+      "mlir_sha256": "391abd06315bd39b4a00896e8755b202cb39f58619feea6605026a82356a71d5",
+      "object_sha256": "913cd245a2910fba75d468fc64d26833fbdf71b4668fabb6b26a6b07c248fe77",
+      "inline_asm_ops": 128
+    },
+    {
+      "family": "gaussian",
+      "target": "fan1_t0",
+      "status": "native_object_emitted",
+      "llvm_sha256": "55982777153b98af75dc51ee5c54b755d992d3aad960c1129da0821be2f7080b",
+      "mlir_sha256": "ca92806391787d5262b5d8aff0f8099fefa198c8c3b66bfcc3ba88eeafa8ef8a",
+      "object_sha256": "c0a77984ef33f642dba07e7d6ca9fd4a47e3bb72eef8d3f9683ffc1b036d0825",
+      "inline_asm_ops": 0
+    },
+    {
+      "family": "gaussian",
+      "target": "fan2_t0",
+      "status": "native_object_emitted",
+      "llvm_sha256": "cfd8f23059c84e5f6dc024b813de8214b1dc9bd60dc61ab6fa50d1b97cda3976",
+      "mlir_sha256": "b6ac1368b81620741e6316c85eac62fdf9ba6edcd5143983c89ea0fddef742f5",
+      "object_sha256": "22d6864f825ac4b3f84c592d46b82cbc8a35f249647927546b6f5cf92a66eaa0",
+      "inline_asm_ops": 0
+    },
+    {
+      "family": "gaussian",
+      "target": "fan1_t1",
+      "status": "native_object_emitted",
+      "llvm_sha256": "ce065b2a2166fa359c42609c634820df0ddefe17879e89bf510616a681b87dfd",
+      "mlir_sha256": "52744d4fc57160ab42ccd16b1ff9b4e536d407a3d7111a98b5757780fe6a45d5",
+      "object_sha256": "e58c80ad396a7aad306a3df7ab48c9f26f1247e967f3637d2324e448a78422f1",
+      "inline_asm_ops": 0
+    },
+    {
+      "family": "gaussian",
+      "target": "fan2_t1",
+      "status": "native_object_emitted",
+      "llvm_sha256": "da8cffbf8db29de9b4fba32b151bcc94cc8cdb150dce4311f2513492147014f0",
+      "mlir_sha256": "031a5d5ee8a6af82b98169a7ba2b0a8ee12a74b2cbec9890801117e2c82ca58d",
+      "object_sha256": "625b273f0fa6efd4d10973c6225f528f38b6c41cd621b991dc953670140c8a07",
+      "inline_asm_ops": 0
+    },
+    {
+      "family": "gaussian",
+      "target": "fan1_t2",
+      "status": "native_object_emitted",
+      "llvm_sha256": "e33433a8b6cb14da73a7ef5963ad39ac682c91e5cd480fc099f42e24f76deadf",
+      "mlir_sha256": "9e7e5c74fe0de7eae57abd53bf65cb4bfd80f14e0ee527c6614fdcf8fbc8be35",
+      "object_sha256": "aa0121b9d8c8114b47896b3f5b2c43eb5b931d140723efa3381285b4216f508e",
+      "inline_asm_ops": 0
+    },
+    {
+      "family": "gaussian",
+      "target": "fan2_t2",
+      "status": "native_object_emitted",
+      "llvm_sha256": "f67725a89b14465ab6066291afdcfffae0156e430c7cbc4debd88118c7da453a",
+      "mlir_sha256": "8f6db61f5eb387adc6aa00ff29024a6bb2d900b5f360ac470b07eff82f18acfc",
+      "object_sha256": "3e9fc812c85be500aa770534b87f4f9ad08068b58a519495532d27ecbbd8c8ed",
+      "inline_asm_ops": 0
+    },
+    {
+      "family": "gaussian",
+      "target": "fan1_t3",
+      "status": "native_object_emitted",
+      "llvm_sha256": "e9e603a5d08073605fab5c1adaba8cc700955a6f822e8030a19ad157183c472b",
+      "mlir_sha256": "bc51836f87e41a46cc748b7565e1f3b49e1cd57d4b9dde1b7ea6ddff43526f28",
+      "object_sha256": "7ab1441afa9f63a4469eed29f457ef50e3a9490932be16a4178a65ed5243aff1",
+      "inline_asm_ops": 0
+    },
+    {
+      "family": "gaussian",
+      "target": "fan2_t3",
+      "status": "native_object_emitted",
+      "llvm_sha256": "d879873a639bd147a9730fcba12ec5793d4f9deecfab3960f5723a38a5017d82",
+      "mlir_sha256": "ae713ae557b422373d805c1e22911d570cf859499437cfebb45c6d1aa2b3e3c7",
+      "object_sha256": "f90e894f3224a50665ab786c04f2a67c5b2b32c433f119f21234bdac4d30eac2",
+      "inline_asm_ops": 0
+    },
+    {
+      "family": "geglu",
+      "target": "kernel",
+      "status": "native_object_emitted",
+      "llvm_sha256": "bc242b4d54493dd4eaeaa1b266ebb434877a9a0bf1ebfcbfe345dd2e706dfb2c",
+      "mlir_sha256": "ae25fed19964ed249a51770f42283513e526bb4e81900d18ade7a4d62f8fb53a",
+      "object_sha256": "fd04f2e47b0d1032fb9fb17121637284fd655326257bff9869a196b5be8c8f5f",
+      "inline_asm_ops": 4
+    },
+    {
+      "family": "gemm_mxgemmini",
+      "target": "mxgemm",
+      "status": "native_object_emitted",
+      "llvm_sha256": "e9e2f845bbc439a9c3a46bc62e74b56e54565a3b783c8543e0f7897e4350201b",
+      "mlir_sha256": "81e0b3ccd0b86da35aee6410dded1da45bb29e36eecc09d18ba45bd62267ef69",
+      "object_sha256": "850a33ac4850f3327e2a202cda0b2af71c7782506341d9fe03ced3f2240f02bc",
+      "inline_asm_ops": 142
+    },
+    {
+      "family": "gemm_mxgemmini",
+      "target": "mxgemm_singletile",
+      "status": "native_object_emitted",
+      "llvm_sha256": "2dd112572152c36da7284e1093b8599a5e27112f78ea6edf68777041a4351330",
+      "mlir_sha256": "8a8074503a0bf9060c7f9129f56024e76f8458bf3815e2a1a8fe8083097f26bb",
+      "object_sha256": "551e8b446a09154c7c66e589cbee37c1785c811e67a9e3ee4331d2fddfc23ab9",
+      "inline_asm_ops": 78
+    },
+    {
+      "family": "gemm_mxgemmini",
+      "target": "mxgemm.fp8.singletile.tm128tn128tk128.requant",
+      "status": "native_object_emitted",
+      "llvm_sha256": "505c663d90a2bfec31b21bfc60ed935885ed29cad1647e189b0bc96b67bfd80b",
+      "mlir_sha256": "db0fd0e0b28dcb4097ecd0e1cdf33bbdcc3cc14f0134a670e3ce5b70053caa9b",
+      "object_sha256": "afdf2c0d50376f4eec722a0491489aaf063054beda497bd7695a582c5f5c977d",
+      "inline_asm_ops": 115
+    },
+    {
+      "family": "gemm_mxgemmini",
+      "target": "mxgemm.fp8.singletile.tm64tn64tk64.fullout",
+      "status": "native_object_emitted",
+      "llvm_sha256": "889a51a9c809cf9df51c8dbf33ecf49cc1bb7bbf1601f7cc9aa2f1b3e070d38b",
+      "mlir_sha256": "f569274ac42ace93ecdd41d6dcd9a300e4ec3a018d9dfd6e66e59921d62851a6",
+      "object_sha256": "2a16ce0995e37cb705a7bdcdf0ffb39261f4f290fa90a93b704e337fe79ab590",
+      "inline_asm_ops": 115
+    },
+    {
+      "family": "gemm_mxgemmini",
+      "target": "mxgemm.fp8.singletile.tm64tn64tk64.requant",
+      "status": "native_object_emitted",
+      "llvm_sha256": "aae82a1aad58d43f14d57ac5b28e763122dc185d3db46c2bf899d895f43e1839",
+      "mlir_sha256": "a375bfcb95fd3660ce5bbd2c6b27ef5a30436a4a8087a2e5a79e1070f3cc5308",
+      "object_sha256": "c9bdb92e9a54d7623d66b0eb1b237406879ccd45107dc11ed257ed5d70a075dc",
+      "inline_asm_ops": 118
+    },
+    {
+      "family": "gemm_mxgemmini",
+      "target": "mxgemm.fp8.m64n64k128.tm64tn64tk64.fullout",
+      "status": "native_object_emitted",
+      "llvm_sha256": "1dc825bd3cbee844dbe5f2b2ce82a07ca7d0e59fa75d9f3a963711cf679f368d",
+      "mlir_sha256": "14dda5d3f1f824a938734d5966cdf4f1027932cfd14bad2ecb168268f43521ef",
+      "object_sha256": "c36355edaebd9a748c78093a052d0d4a350ba1cdb88bd6666c445f6def4826e2",
+      "inline_asm_ops": 142
+    },
+    {
+      "family": "gemm_mxgemmini",
+      "target": "mxgemm.fp8.m128n128k512.tm128tn128tk128.fullout",
+      "status": "native_object_emitted",
+      "llvm_sha256": "54c841f175b1259474850ee88aeff2833e8c0c913cd106f61ebc2581f519af1e",
+      "mlir_sha256": "ed184cc248f10301218f921d588300406ca8ce30b3f59faa086a528d9193ae18",
+      "object_sha256": "ae8bf1bc7b6f8dbcbcf311bdb9b6f640a4b3a12de4383c119d7a80f414e0d020",
+      "inline_asm_ops": 142
+    },
+    {
+      "family": "gemm_mxgemmini",
+      "target": "mxgemm.fp8.m128n128k256.tm128tn128tk128.fullout",
+      "status": "native_object_emitted",
+      "llvm_sha256": "72969801c70ed94ea3560bfa1b1556db00662d6140d2facd11379bd9dca113a4",
+      "mlir_sha256": "36cbb0dfed69323d3721cae0f5d2f4f9badc316413461ad399985bf4d10c2fbd",
+      "object_sha256": "cd58e4353e085897294e49b17d99e6fd0c8e5d1f8fa3d83572e9b876e08fc7c5",
+      "inline_asm_ops": 142
+    },
+    {
+      "family": "gemm_mxgemmini",
+      "target": "mxgemm.fp8.m128n128k128.tm128tn128tk128.fullout",
+      "status": "native_object_emitted",
+      "llvm_sha256": "c362a43e73d3c1e16e22d2f8f6aae03d1d1ae6a7509256950f7fa7d08f56ccfd",
+      "mlir_sha256": "36e8871a8c685a1ffcc0739a4c406b0f4b98b9fd0ccc26ea84011f2b120c6215",
+      "object_sha256": "39f548766f82ce6c8f0de516c4e68cf153b508c80ba0ab096b26c950a8f29a9b",
+      "inline_asm_ops": 115
+    },
+    {
+      "family": "gemm_mxgemmini",
+      "target": "mxgemm.fp4.singletile.tm64tn64tk64.fullout",
+      "status": "native_object_emitted",
+      "llvm_sha256": "4306f3e557c5b8b05917c3f001180385e7f74bf99d0a54dec0ca1cbb42b3ae26",
+      "mlir_sha256": "943e6480f58a614e1857b2b5813219d596ab1f4ff55ba0b013846a741e2b64dd",
+      "object_sha256": "7f59af26634e26b484481a1085cffaeee28817491357a4641fc4076e9c69c4f0",
+      "inline_asm_ops": 115
+    },
+    {
+      "family": "gemm_mxgemmini",
+      "target": "mxgemm.fp4.m64n64k128.tm64tn64tk64.fullout",
+      "status": "native_object_emitted",
+      "llvm_sha256": "d6bf71d8db8eb0eb696dc1621b77000ac7fb9a69a5b2e3aea8dbd4bfda0bf3ba",
+      "mlir_sha256": "35965eedd605c939af022068d9e990541ab1ff92d1037fdf38571fd42713c738",
+      "object_sha256": "32a227433da0de78821e8666c33e264783119145f2c6d2edf8c307a953513fa5",
+      "inline_asm_ops": 142
+    },
+    {
+      "family": "gemm_mxgemmini",
+      "target": "mxgemm.fp4.singletile.tm64tn64tk64.requant",
+      "status": "native_object_emitted",
+      "llvm_sha256": "5211a8a3aa7f45a29ed383345f7e07fc274e17edbbad35e621ecbcc72f7578b8",
+      "mlir_sha256": "3786de27c71707adbc29de4f7993512af728ce2965479642bec3e0ecfee63bc3",
+      "object_sha256": "41bb4652bc805f593a9a0efa0aa40761c44e4065c4710d8d8bc7effb77277649",
+      "inline_asm_ops": 115
+    },
+    {
+      "family": "gemm_mxgemmini",
+      "target": "mxgemm.fp4.singletile.tm128tn128tk128.fullout",
+      "status": "native_object_emitted",
+      "llvm_sha256": "b6f989f3cdc5a53d15a3483889fdf3f79ea3bf7181f2feda07c1c22721e1f299",
+      "mlir_sha256": "3cec84595435473f6baa07dce05808cf2fd81ff2def6c240c1b596a5be1188d2",
+      "object_sha256": "ca2da2bcc033a9504479a99792b98f18b21f318473c21b664a93e46a785ad9d0",
+      "inline_asm_ops": 115
+    },
+    {
+      "family": "gemm_mxgemmini",
+      "target": "mxgemm.fp4.m128n128k256.tm128tn128tk128.fullout",
+      "status": "native_object_emitted",
+      "llvm_sha256": "e664e06ec1ab92bd45c1fc08939244d8f0ab01f6e4fde8de676e84f1a643a621",
+      "mlir_sha256": "0fae6860367de0cd1221e266bffc17209ab317fac5e5b2f862e7775ccab1af3f",
+      "object_sha256": "a37bfa89e7b0c3839f4c4ba26a1660f507f3a9ca41e199f327791a199fb5a98d",
+      "inline_asm_ops": 142
+    },
+    {
+      "family": "gemm_mxgemmini",
+      "target": "mxgemm.fp4.singletile.tm128tn128tk128.requant",
+      "status": "native_object_emitted",
+      "llvm_sha256": "0c9aca9a8f8f213126996bd94ee102cf0d002132b3f6df093df3b1ca5c4975bd",
+      "mlir_sha256": "cb7a77beded8ff8edd357534da5b42f0fa4044fa4f9bce6e0fe7a12ae261eddc",
+      "object_sha256": "14aafb1cc731e30e1fae7f7d75dbaa2605bbf63d077775f68fad70c0d0fbdbc9",
+      "inline_asm_ops": 115
+    },
+    {
+      "family": "gemm_mxgemmini",
+      "target": "mxgemm.fp8.m128n128k2048.tm128tn128tk128.fullout",
+      "status": "native_object_emitted",
+      "llvm_sha256": "0b95f3571db22333b08f68280ea55554682b551c4303364898fe86128545722a",
+      "mlir_sha256": "0b6fccb86a18132dfa95717c3b2d1c17a2cfa9999188a5c5bf6d8666bd36a117",
+      "object_sha256": "a22e35945e4b1250d82047c0bd282197b9bda602ead8bd969c0d12a2466857a8",
+      "inline_asm_ops": 142
+    },
+    {
+      "family": "gemm_mxgemmini",
+      "target": "mxgemm.fp8.m128n128k5632.tm128tn128tk128.fullout",
+      "status": "native_object_emitted",
+      "llvm_sha256": "cbc9c1045183b7654d05bf1d4b1891739ea3c07e489fdaf997eadc624f38201b",
+      "mlir_sha256": "a6bb9c09f240071261908c4dcb726608890b95f7eab60dff7187e1ca11ddd5c7",
+      "object_sha256": "9af1112fc9d43effce6504f561b5e8d6e906a658929a4060cc5fa553c333a8f4",
+      "inline_asm_ops": 142
+    },
+    {
+      "family": "gemm_mxgemmini",
+      "target": "mxgemm.fp6.m128n128k2048.tm128tn128tk128.fullout",
+      "status": "native_object_emitted",
+      "llvm_sha256": "ebf22b4875013c2f29494c7615f3fd11d2277ed1bc0c76de62b024c13bf46cd3",
+      "mlir_sha256": "59f6b0b19d45f4b59ab6ac3697a694aad132877ed6a5dd55a892dd98f7d17aa5",
+      "object_sha256": "feadef1ab8c67fc19f98759035003cda71794a2a1a67bde6ec847b35f6b4986e",
+      "inline_asm_ops": 142
+    },
+    {
+      "family": "gemm_mxgemmini",
+      "target": "mxgemm.fp4.m128n128k2048.tm128tn128tk128.fullout",
+      "status": "native_object_emitted",
+      "llvm_sha256": "a772a2a3c273f0682867e1b83cf62b1b78538681502d52a0dfbe164f49486879",
+      "mlir_sha256": "768640d96a3674db624e958e4901ffbed44ee05a96f0123c81abe31ea11a3b0f",
+      "object_sha256": "77a971465788ae74dcad15c1923e260ce8f848caa03d59d2dfc8c63bf7331f37",
+      "inline_asm_ops": 142
+    },
+    {
+      "family": "gemm_mxgemmini",
+      "target": "mxgemm.fp4.m128n128k5632.tm128tn128tk128.fullout",
+      "status": "native_object_emitted",
+      "llvm_sha256": "2237c586e1273e275798544892c1fbb7d697a18da4a9550d277484a0887a7ec9",
+      "mlir_sha256": "425ebd74129455d6c91d78106c1a24b3fcc54bb7c7b87bd2d3d6690862cff2e8",
+      "object_sha256": "43acb5d534541ef7f3aa114dbefbce30f02c2f8e4c95f39383b14fe192ec51ed",
+      "inline_asm_ops": 142
+    },
+    {
+      "family": "gemm_mxgemmini",
+      "target": "mxgemm.simt_contention",
+      "status": "native_object_emitted",
+      "llvm_sha256": "faee32ec5e5ced03b4066dbc1a5a6dbb529d49f4315556466d310e431b210345",
+      "mlir_sha256": "5793d653dff83238bcc0220ccff4691e5c69cf117025c94ae5b3ab6b7dab1d62",
+      "object_sha256": "c21ed39896cbd659716433f40b3a91c811409c2d28af6a23de15dd2217d6b82e",
+      "inline_asm_ops": 142
+    },
+    {
+      "family": "gemm_mxgemmini",
+      "target": "requant",
+      "status": "native_object_emitted",
+      "llvm_sha256": "9f3330ef4119dd7a7fde9e6c5ab26c41e25392566a2e5fdedd5a8b65fd28e990",
+      "mlir_sha256": "8d6cc86c32968dbd76e81b6d3c4e9eff81be6caa4fed1b11a561dff1d4cff05a",
+      "object_sha256": "a6ca77f025bc4e02b2b59b83c04308244d1a36a23152a0c221862483c99036aa",
+      "inline_asm_ops": 119
+    },
+    {
+      "family": "gemm_mxgemmini_ws",
+      "target": "kernel",
+      "status": "source_compile_failed",
+      "error": "source compile failed (1)",
+      "diagnostic": "kernel.cpp:9:10: fatal error: 'data' file not found"
+    },
+    {
+      "family": "gemm_mxgemmini_ws_downproj_fp4",
+      "target": "kernel",
+      "status": "source_compile_failed",
+      "error": "source compile failed (1)",
+      "diagnostic": "kernel.cpp:6:10: fatal error: 'data' file not found"
+    },
+    {
+      "family": "gemm_mxgemmini_ws_restream",
+      "target": "kernel",
+      "status": "native_object_emitted",
+      "llvm_sha256": "80a64893edf56437b9116502ee1195262b4149d57addd33ce754235c3d5ac301",
+      "mlir_sha256": "6fa4a32863423947e3eaefa082d6656d762bfb31be3f70065bc9521adcc3123e",
+      "object_sha256": "1e9374564961875554a5a20d82183cb0219f86b0bffaba5c8b7bc92d4cd06e6e",
+      "inline_asm_ops": 151
+    },
+    {
+      "family": "gemm_simt",
+      "target": "kernel",
+      "status": "native_object_emitted",
+      "llvm_sha256": "c4a6ae1937b5ad33412448637aae94fea837044567c45bd5f3a65fdf42c5025f",
+      "mlir_sha256": "e02c05ff4846c028e89ec9b6a0a12c427dba7c98ed9710a1d5170de92e86bfc9",
+      "object_sha256": "f050b11e5dd6893d08f8df078f2ac2df40378e7a6d6b97e48efcfd3a16a97eb9",
+      "inline_asm_ops": 3
+    },
+    {
+      "family": "gemm_simt",
+      "target": "kernel_bounded",
+      "status": "native_object_emitted",
+      "llvm_sha256": "a64d266daab4ce9874dbea9e5f7d8d18fbd8b0a551fec30a7374c7673c9eb8de",
+      "mlir_sha256": "09faa53598bbe7401bd6e925579818def52f3efb2eacdd908dbe5d62b2220048",
+      "object_sha256": "243106edacab97be30ddb796096486c6bcfa3b73547ebf89ecbcfa025d9e1376",
+      "inline_asm_ops": 4
+    },
+    {
+      "family": "gemm_simt",
+      "target": "kernel_strict",
+      "status": "native_object_emitted",
+      "llvm_sha256": "4627f03923b0a3649c84a4906ca54e1597768c88d6a0626890f12e9d4d87d5e7",
+      "mlir_sha256": "8f74a17a0c6ccfcf82c2d628c51e14c3ff6316ab91ec32e0a0b510cbf70ee7e3",
+      "object_sha256": "0b5edb34dc1e5c8e0e0e069920d4ef80c8e576e5735e4097a2271ce3466daaba",
+      "inline_asm_ops": 5
+    },
+    {
+      "family": "gemm_simt",
+      "target": "kernel_ilp1",
+      "status": "native_object_emitted",
+      "llvm_sha256": "3259b18b7d86d57a45ab71e486ba1697acbcf08ad27e4e13e48069f6ab2b38cb",
+      "mlir_sha256": "60f748faa43dde993d3bcc4918bc3c464de5462a62eb6554a4b692cf09533a4c",
+      "object_sha256": "da2e1309a47e3a438903266b64259e233d80adbd816c225b3b47816d9d06618e",
+      "inline_asm_ops": 3
+    },
+    {
+      "family": "gemm_simt",
+      "target": "kernel_ilp1_fence",
+      "status": "native_object_emitted",
+      "llvm_sha256": "a05c48bb1294e95a739605ac74b4601c33a15d1efef3a25c60fa8978e80953d5",
+      "mlir_sha256": "ac4163b50270ad80d1fb31468175f221728a13c0fb1d1fcac76444e1c6a44040",
+      "object_sha256": "5c496f1948df39c1173fa545bbd0a41ff4cc44bcdd13fd441a0ef6119387a884",
+      "inline_asm_ops": 4
+    },
+    {
+      "family": "gemm_simt",
+      "target": "kernel_tn4",
+      "status": "native_object_emitted",
+      "llvm_sha256": "044cd09ef3256f9239a305525bf5681184fb6c3c544e83d65b6a62514a72fde4",
+      "mlir_sha256": "c6b9832e96db1aa008fbda51315716597cf0918866e235f046a109fb96126f19",
+      "object_sha256": "c66e2167a8f87bed04381ec43935330827e7f751cdda2d4413c3146cca0c76a2",
+      "inline_asm_ops": 3
+    },
+    {
+      "family": "gemm_simt",
+      "target": "kernel_tn4_fence",
+      "status": "native_object_emitted",
+      "llvm_sha256": "0eb29023a1abe38834f4886b218e9ba287c2c27e052f7cb408e2a0faf5e9c424",
+      "mlir_sha256": "7f62f49e66af7467579ade06eef7d9ad5849eab19737f853aabe677467a64c0f",
+      "object_sha256": "2eeda044acec60be564699e98efe0ff2957b8e18ecb63c789e3afeb6ac1efc3b",
+      "inline_asm_ops": 4
+    },
+    {
+      "family": "gemma_4norm",
+      "target": "kernel",
+      "status": "native_object_emitted",
+      "llvm_sha256": "a26b4e343ff74d307268b6cd0591c1c813a329dc73bfee90b0d1752ea3a35dbb",
+      "mlir_sha256": "8b3a324ddae03ac7caee3e07477149095445b8f1b080ee73c92356904fe42ec5",
+      "object_sha256": "88e1e168d6881aa8ec342367c163aa11b0c5bd579614c282e8ec395f6ec6f689",
+      "inline_asm_ops": 4
+    },
+    {
+      "family": "gemv",
+      "target": "kernel",
+      "status": "native_object_emitted",
+      "llvm_sha256": "aeb6a62b2091565e20789ac33ebccd5aa92692b1fa533c734132c1cad1745dfb",
+      "mlir_sha256": "710ea1bdeb5fe5fa060f13d3499979592d3d268bbb0c636c2cc7e8fa483d47bf",
+      "object_sha256": "6ee73cfbc8569d5f856b65bd582a0d652aa08ee10a264f0ca1659b4870c41fe1",
+      "inline_asm_ops": 8
+    },
+    {
+      "family": "gemv_batched_fp4_m128",
+      "target": "kernel",
+      "status": "source_compile_failed",
+      "error": "source compile failed (1)",
+      "diagnostic": "kernel.cpp:24:10: fatal error: 'data' file not found"
+    },
+    {
+      "family": "gemv_batched_fp8_m128",
+      "target": "kernel",
+      "status": "source_compile_failed",
+      "error": "source compile failed (1)",
+      "diagnostic": "kernel.cpp:24:10: fatal error: 'data' file not found"
+    },
+    {
+      "family": "gemv_batched_fp8_m32",
+      "target": "kernel",
+      "status": "source_compile_failed",
+      "error": "source compile failed (1)",
+      "diagnostic": "kernel.cpp:24:10: fatal error: 'data' file not found"
+    },
+    {
+      "family": "gemv_batched_fp8_m64",
+      "target": "kernel",
+      "status": "source_compile_failed",
+      "error": "source compile failed (1)",
+      "diagnostic": "kernel.cpp:24:10: fatal error: 'data' file not found"
+    },
+    {
+      "family": "idle",
+      "target": "idle",
+      "status": "make_recipe_failed",
+      "error": "make dry run failed (2)",
+      "diagnostic": "make: *** No rule to make target 'idle.mu.o'.  Stop."
+    },
+    {
+      "family": "launch",
+      "target": "kernel",
+      "status": "native_object_emitted",
+      "llvm_sha256": "61c58c2eace390249e2034fadd5ddda3c321752ef0505c37bd170b2bc2163b55",
+      "mlir_sha256": "6a7ffabcc6b68d353048f65de08beacce9b4b4eb29ee5f8de026b1c2f25f2d67",
+      "object_sha256": "d7c58f1984e31a8ee5cc324501edb36cd399f8d6cd9c4c74c88b89e8b36a004c",
+      "inline_asm_ops": 4
+    },
+    {
+      "family": "layernorm",
+      "target": "kernel",
+      "status": "native_object_emitted",
+      "llvm_sha256": "d51d6582d86893d2407eaffcc9e11bcd6468246246bbbbce3a1c85973e7e25bf",
+      "mlir_sha256": "7608ae4bdd595f9afbb3379adcd265a2a97e4b036fa3d524a8458e8371b59379",
+      "object_sha256": "d79c61b4e07bc597ed103d1d5ab094d7b8fc1ac9274726a19a719a3e5800fd8e",
+      "inline_asm_ops": 4
+    },
+    {
+      "family": "logit_softcap",
+      "target": "kernel",
+      "status": "native_object_emitted",
+      "llvm_sha256": "8599df70bb2242c5def868bf30d2e350d9ff0c764429da16aa98624041fcba97",
+      "mlir_sha256": "8c36dc3377da1b67ae311c901e79eff93fe688c354a8dbadf2201175960e1170",
+      "object_sha256": "caa89545efae110dfeaa819fd493841c98e02f3300b527c9370c0b7206567429",
+      "inline_asm_ops": 4
+    },
+    {
+      "family": "nearn",
+      "target": "kernel",
+      "status": "native_object_emitted",
+      "llvm_sha256": "4232b82fbaa00c25a597315d1af4ff84cfc327e43dbcb2baaf1122e6022502d5",
+      "mlir_sha256": "5e4467f1865c2283445fc7b0a6a72fc2a2b7a0df736e3bf24c8d2b5e4256df95",
+      "object_sha256": "cf9558ad87a4c729f2d193ee8aba2b368df5a819a4af8a3f43dd392378caca45",
+      "inline_asm_ops": 0
+    },
+    {
+      "family": "patch_embed",
+      "target": "kernel",
+      "status": "native_object_emitted",
+      "llvm_sha256": "2ddd11f7f1be1d9f458dcd9ee2d33fc62d3d10a06cb0a2ed6c4b3e63258b34d2",
+      "mlir_sha256": "367b02e61e3a1d70edf450e97694a8a8936aaaa201b393dfe406925194588240",
+      "object_sha256": "27d3860093e5212cd4c1de2e0f189431f7d2a86fb7df72d5e8ba3f576abdd41f",
+      "inline_asm_ops": 7
+    },
+    {
+      "family": "pointerchase",
+      "target": "kernel",
+      "status": "native_object_emitted",
+      "llvm_sha256": "98a6985ab4626bc1892021bf69e7d3cd49a2acc23ca0b218150a25b55c83614f",
+      "mlir_sha256": "7088234eb5ce9934ef558ee9d3013e591ff4a7aa0573da3e0f9f3c1cf6162dd5",
+      "object_sha256": "d6dcc4bfaa246425a2184976407d5a306ce0fd8cc693df1e27829850eea7efd9",
+      "inline_asm_ops": 17
+    },
+    {
+      "family": "qkv_bias",
+      "target": "kernel",
+      "status": "native_object_emitted",
+      "llvm_sha256": "288590de86b6aff342cbcf5a09d2e50c4912fa0cb5e897824d2081485acf35fe",
+      "mlir_sha256": "6b01185e154ef4211600a14d17c547054228631feb508454ff52eeb5edaa932c",
+      "object_sha256": "bcc71af271008966589ad12627d89fae537ff44f1c43dfc745425f54e8ea1105",
+      "inline_asm_ops": 4
+    },
+    {
+      "family": "reg_stack_test",
+      "target": "kernel",
+      "status": "native_object_emitted",
+      "llvm_sha256": "5e5336bb458e0d0d6a36493c42b53f401ae1495f2ab0099cb43c91397f5dedb0",
+      "mlir_sha256": "e8dfc851468e8ff5603f7e32ddfa68d785c63590e0ad9b8af4c92d02cd9ac1ee",
+      "object_sha256": "fbb367bef26d483a85e857dc313489bc3804cc508c042c49628e94c358a89a0b",
+      "inline_asm_ops": 0
+    },
+    {
+      "family": "rickroll",
+      "target": "rickroll",
+      "status": "make_recipe_failed",
+      "error": "make dry run failed (2)",
+      "diagnostic": "make: *** No rule to make target 'rickroll.mu.o'.  Stop."
+    },
+    {
+      "family": "rmsnorm",
+      "target": "rmsnorm",
+      "status": "source_compile_failed",
+      "error": "source compile failed (1)",
+      "diagnostic": "./data:6:16: error: redefinition of 'gamma' as different kind of symbol"
+    },
+    {
+      "family": "rmsnorm_gemma",
+      "target": "kernel",
+      "status": "native_object_emitted",
+      "llvm_sha256": "e0116024746bdbfc910ada072a1090be71b71a994dc61251e091691bea59094f",
+      "mlir_sha256": "1e4d85335b77fbf98814dbec26b1d9cabfb33164abebfd79c027fc71341bf01d",
+      "object_sha256": "fd097772fb695d96c238e2b6e596e05abf21c709314eb5318954c1e6c7bab71a",
+      "inline_asm_ops": 4
+    },
+    {
+      "family": "rmsnorm_qkv_fused",
+      "target": "kernel",
+      "status": "native_object_emitted",
+      "llvm_sha256": "a651d9a170b085ee7b677286a9c62d2476a4884a6f23c7863b3c7877f5977574",
+      "mlir_sha256": "3e32082e6ed27b9e02bc982b5f702148f50bae96698513c280bf3350ee92877a",
+      "object_sha256": "290af92a155eadf3b5dc1b6e9a00f1626eaa1c157ec8b2460f6f1334f2661a3e",
+      "inline_asm_ops": 153
+    },
+    {
+      "family": "rope_qkv_fused",
+      "target": "kernel",
+      "status": "native_object_emitted",
+      "llvm_sha256": "af4944003d14ba98c4eeab436b1a5f3a4d25a88df92986764a268973b671603d",
+      "mlir_sha256": "ca8e496f20c5f4db673713e8dd109a7614c27a2a6fbf059bc017b984c47df213",
+      "object_sha256": "d17cb4e82640b6762d8b99ed1fa39e987d257cd45c1eae6373468be1e93967a8",
+      "inline_asm_ops": 151
+    },
+    {
+      "family": "saxpy",
+      "target": "kernel",
+      "status": "native_object_emitted",
+      "llvm_sha256": "ad71b72c517f8766f9c3b7178b97f5ff6788d7a6f7ba450afb789fb75e79ca0c",
+      "mlir_sha256": "578396140e47a1b9369e32bd13dd7f7c55ac7f1cd7c33d48feeb27e994be7b70",
+      "object_sha256": "08e7dfb7388b84fc7bb3f4ace18bf25b855adc54acd1528483346955522de5ec",
+      "inline_asm_ops": 0
+    },
+    {
+      "family": "sfilter",
+      "target": "kernel",
+      "status": "native_object_emitted",
+      "llvm_sha256": "02e60386a762890102b0f1595148da908729aed0a327c61bf06637641d0a5a93",
+      "mlir_sha256": "39451ba50dcfb597f22d1a1bfa1dd42414f099f60ddf9543420c4bdd74b1121d",
+      "object_sha256": "fe06d51a693f9f52222c576b033ac4bfc56ae6a1f8de62c9b277f8899e345d58",
+      "inline_asm_ops": 0
+    },
+    {
+      "family": "sgemm_gemmini",
+      "target": "sgemm_gemmini",
+      "status": "make_recipe_failed",
+      "error": "make dry run failed (2)",
+      "diagnostic": "make: *** No rule to make target 'sgemm_gemmini.mu.o'.  Stop."
+    },
+    {
+      "family": "sgemm_gemmini_dma",
+      "target": "sgemm_gemmini_dma",
+      "status": "make_recipe_failed",
+      "error": "make dry run failed (2)",
+      "diagnostic": "make: *** No rule to make target 'sgemm_gemmini_dma.mu.o'.  Stop."
+    },
+    {
+      "family": "sgemm_gemmini_duo",
+      "target": "sgemm_gemmini_duo",
+      "status": "make_recipe_failed",
+      "error": "make dry run failed (2)",
+      "diagnostic": "make: *** No rule to make target 'sgemm_gemmini_duo.mu.o'.  Stop."
+    },
+    {
+      "family": "sgemm_muon",
+      "target": "sgemm_muon",
+      "status": "make_recipe_failed",
+      "error": "make dry run failed (2)",
+      "diagnostic": "make: *** No rule to make target 'sgemm_muon.mu.o'.  Stop."
+    },
+    {
+      "family": "sgemm_tcore",
+      "target": "sgemm_tcore",
+      "status": "make_recipe_failed",
+      "error": "make dry run failed (2)",
+      "diagnostic": "make: *** No rule to make target 'sgemm_tcore.mu.o'.  Stop."
+    },
+    {
+      "family": "sgemm_wg",
+      "target": "sgemm_wg",
+      "status": "make_recipe_failed",
+      "error": "make dry run failed (2)",
+      "diagnostic": "make: *** No rule to make target 'sgemm_wg.mu.o'.  Stop."
+    },
+    {
+      "family": "simt_quant",
+      "target": "kernel",
+      "status": "native_object_emitted",
+      "llvm_sha256": "096c94cd7dfdab12f8cea053080eb10c0cbedbb5865a5f98554561403ea18ff6",
+      "mlir_sha256": "54c292a80fe2e7c9ffacbacd9c1e838906600b1bddab8b36086a053f9fb0fee2",
+      "object_sha256": "f1c90f0f39b825ce07c7aac2ddfd2847a78ad64517ee4b875286a45be7bbb10f",
+      "inline_asm_ops": 4
+    },
+    {
+      "family": "softmax",
+      "target": "kernel",
+      "status": "native_object_emitted",
+      "llvm_sha256": "3a84038b12302e797e43eefd75d43dee9fa8ec36d948132edc7ccecf42597e9a",
+      "mlir_sha256": "84ed29860abda670946108e1af337f675e95768d6596b3c65934d856769ae90b",
+      "object_sha256": "7e1836811c07692bf50fd31fffb4d1d026bf5bb68044bcb2d3aaae5f8d61779b",
+      "inline_asm_ops": 27
+    },
+    {
+      "family": "spatter",
+      "target": "kernel",
+      "status": "native_object_emitted",
+      "llvm_sha256": "6e1370aebd14a0a535c23c98d07eded279458b608e62e1df9acfcffa9ce8595c",
+      "mlir_sha256": "2bd38556c7cbf3a931a76f144994a30449993ebdd74581a69f56aefcc4e476fe",
+      "object_sha256": "6e0244658b5c9f18abcfec8aef7d77c8f7167756db295de6db56c40c08db6292",
+      "inline_asm_ops": 1
+    },
+    {
+      "family": "special_fn",
+      "target": "special_fn",
+      "status": "source_compile_failed",
+      "error": "source compile failed (1)",
+      "diagnostic": "special_fn.cpp:11:13: error: static declaration of 'puts' follows non-static declaration"
+    },
+    {
+      "family": "spin",
+      "target": "kernel",
+      "status": "native_object_emitted",
+      "llvm_sha256": "7524d25c93af22d68952f9851a1cf7428e9b692d6648306aefeef1a98d61ae02",
+      "mlir_sha256": "90054e11d9483f85f79885cfd63a3c722aa6bfcbb2262fa0737f78d166ce0d86",
+      "object_sha256": "fc075a5a6d3075b2d0f4d66b1d02c6733028be04ee104f796e9e6d9970f54aa3",
+      "inline_asm_ops": 1
+    },
+    {
+      "family": "stream",
+      "target": "kernel",
+      "status": "native_object_emitted",
+      "llvm_sha256": "64cd1a8c65faf7cd7a30cfa3eb2212069233af55eb700e021469df609d149eff",
+      "mlir_sha256": "989f2876952bf5207b875fc67678e3f94dfadcaac71fd9b0038797cf90e8c04a",
+      "object_sha256": "dc3fcc848093b29e4355075716e0828558142e4c05674c718c0d753598682e7b",
+      "inline_asm_ops": 1
+    },
+    {
+      "family": "swiglu",
+      "target": "kernel",
+      "status": "native_object_emitted",
+      "llvm_sha256": "a59a9c7efe53ae2c95f7aaa35a0ea91c2a75f47c43fc30432801152a2bd7b9e4",
+      "mlir_sha256": "db6f8e14d82606fde548fb0ea6a1fad110200f4886e8d88e04b04ad3a474829b",
+      "object_sha256": "f1280bf1bfe78522807b1b61380560bc1f6aa65d96c872db993df2c7c08d0525",
+      "inline_asm_ops": 20
+    },
+    {
+      "family": "tapeout_template",
+      "target": "kernel",
+      "status": "native_object_emitted",
+      "llvm_sha256": "d90b65eacec46af8d3626dd9ccb951fce2a5b26bd5a88fa6f37edd0d2092753f",
+      "mlir_sha256": "f313ed272a90cd893db263b15d5f1de95dd76350943bc632d37f27b111645d2c",
+      "object_sha256": "339f27e1156952dfae66c5377707d63a1dc25538fa266b91ccab06001103dc3d",
+      "inline_asm_ops": 47
+    },
+    {
+      "family": "test_backing_L2_fill",
+      "target": "kernel",
+      "status": "native_object_emitted",
+      "llvm_sha256": "dd0a0cdfe6eefd1a1ee781e8e37ccd4fc026ef96bef5db07c97be38e337d90c2",
+      "mlir_sha256": "cdea4f9a96e809314cedc132538538e1b983cc32137b8250de34cb5dc840675d",
+      "object_sha256": "e5429ce1d1b5e9c06b4e22f6775e5fabddc0a1011481d4c0c3e385a88e4c9637",
+      "inline_asm_ops": 0
+    },
+    {
+      "family": "test_backing_mem",
+      "target": "kernel",
+      "status": "native_object_emitted",
+      "llvm_sha256": "9719154e3dbda02a349f596bc0749bda531be276fbdf45b9500670b9cb1c9060",
+      "mlir_sha256": "a2e2cd64ef3935170eebbb98b5586ea104a2ebc2f9fbd10182cee0c44bcecdd0",
+      "object_sha256": "99f537e1ed904184da6aff90ccc0339fc491c562026f9ae1d3525365386886b1",
+      "inline_asm_ops": 0
+    },
+    {
+      "family": "ubench",
+      "target": "flops_fp16",
+      "status": "native_object_emitted",
+      "llvm_sha256": "124a20e19c66654a97e359707173fd7d47a25b84aff7558bcca1f389f678b62a",
+      "mlir_sha256": "e8a1eaf8e5735c37871ccce1755857677c4dd28f9a635610818e957121c630db",
+      "object_sha256": "151fd7f892af541201744832d2cd1ec23d0ea5f13fc4058142bffdab8285b299",
+      "inline_asm_ops": 1603
+    },
+    {
+      "family": "ubench",
+      "target": "flops_fp32",
+      "status": "native_object_emitted",
+      "llvm_sha256": "0b3d47fe280f720e0056a09f3c8c6c6328d15240c892a1e287e8d962dd2db67b",
+      "mlir_sha256": "f9d752c90010958c3e47eb760ced5a61dc303489f30d3805b2aefd013fb6a98c",
+      "object_sha256": "a30e57fb337af59dec4aaf8b47d97bd5241000a23f88617dab4a280d403b808f",
+      "inline_asm_ops": 1603
+    },
+    {
+      "family": "ubench",
+      "target": "flops_int",
+      "status": "native_object_emitted",
+      "llvm_sha256": "ecb0c5977ecad7ea9bf63f04219456232dab0efdd3370378a41fb61f2f35018f",
+      "mlir_sha256": "db0d3b3eeeeef546844aa96d516117757559f9bafaebcdf2d26f4322a3bf44b2",
+      "object_sha256": "7f86491e6adef66d7f3c3e124b30ec01f76b3fbde39380967d988c32b27f24cd",
+      "inline_asm_ops": 1603
+    },
+    {
+      "family": "ubench",
+      "target": "flops_exp_fp16",
+      "status": "native_object_emitted",
+      "llvm_sha256": "fa7328061eb7ecb8d60ebe09c5a482184dd9810d7ae6b49a8f66794aa1c54cc1",
+      "mlir_sha256": "ae369d78da037f32c86b3ad9533bb09e4971569537bbe2457437ecb7530928db",
+      "object_sha256": "063c91ad62677296a112506ccd9126cc91f8108355bf1b3d4d08e839b6017bdf",
+      "inline_asm_ops": 4099
+    },
+    {
+      "family": "ubench",
+      "target": "bandwidth_gmem_lw_l0hit",
+      "status": "source_compile_failed",
+      "error": "source compile failed (1)",
+      "diagnostic": "bandwidth_gmem_lw_l0hit.cpp:4:10: fatal error: 'lib.h' file not found"
+    },
+    {
+      "family": "ubench",
+      "target": "bandwidth_gmem_sw_l0hit",
+      "status": "source_compile_failed",
+      "error": "source compile failed (1)",
+      "diagnostic": "bandwidth_gmem_sw_l0hit.cpp:4:10: fatal error: 'lib.h' file not found"
+    },
+    {
+      "family": "ubench",
+      "target": "bandwidth_smem_lw",
+      "status": "source_compile_failed",
+      "error": "source compile failed (1)",
+      "diagnostic": "bandwidth_smem_lw.cpp:4:10: fatal error: 'lib.h' file not found"
+    },
+    {
+      "family": "ubench",
+      "target": "bandwidth_smem_sw",
+      "status": "source_compile_failed",
+      "error": "source compile failed (1)",
+      "diagnostic": "bandwidth_smem_sw.cpp:4:10: fatal error: 'lib.h' file not found"
+    },
+    {
+      "family": "unaligned",
+      "target": "unaligned",
+      "status": "make_recipe_failed",
+      "error": "make dry run failed (2)",
+      "diagnostic": "make: *** No rule to make target 'unaligned.mu.o'.  Stop."
+    },
+    {
+      "family": "vecadd",
+      "target": "kernel",
+      "status": "native_object_emitted",
+      "llvm_sha256": "9018557bd1b5ec9917443bdce35fbb6ec277e637b9875de9c34596a105df7190",
+      "mlir_sha256": "b8991b91ecf84ed2315c0b70042c409091e833fd650a7b36d382223a84151bc5",
+      "object_sha256": "a59dc54ff811af4884068c5fc24a300146cd10b907ab3b2bb322d493bfeecf31",
+      "inline_asm_ops": 0
+    },
+    {
+      "family": "vecadd",
+      "target": "kernel_ilp2",
+      "status": "native_object_emitted",
+      "llvm_sha256": "35ec7d9d5a66fb6a2677710921d10e59be1f7bf726dbb3f73edf125ccda60480",
+      "mlir_sha256": "a531884c256fd25ed2d447652e0cb13f3c6d3a3f72336113173ec2ea291db1e5",
+      "object_sha256": "a56a36ea6445e377b3a1665c7b969be7285582db56220b217668d1b79deb084a",
+      "inline_asm_ops": 0
+    },
+    {
+      "family": "vecadd",
+      "target": "kernel_ilp4",
+      "status": "native_object_emitted",
+      "llvm_sha256": "43d4659fc72d2aee23417b12a765ef2e4678e4b7a28817943a5f4e16c74e4f31",
+      "mlir_sha256": "b0d5d0f842f3ce07fe1cf740fb7bdec69c1f3b2f89dd044a9394456c74349671",
+      "object_sha256": "6b39d64942282881c35b2e3b4b41889e3ec3af53f8efdcbf0a15c43fc584270d",
+      "inline_asm_ops": 0
+    },
+    {
+      "family": "vecadd",
+      "target": "kernel_ilp4_ou2",
+      "status": "native_object_emitted",
+      "llvm_sha256": "e90adc96895e90703fc40e23a14b3188977694e7f50525cfaea81ce820a8ddeb",
+      "mlir_sha256": "ff45118830a37adb0581f6dad62711fb2fe324fa348f3efc62d70d1612476b50",
+      "object_sha256": "56dc07dab466feec7e54b59a082de0e5ff8e6e70b8b86a94ff3f836ae1eedbed",
+      "inline_asm_ops": 0
+    },
+    {
+      "family": "vecadd",
+      "target": "kernel_ilp8",
+      "status": "native_object_emitted",
+      "llvm_sha256": "dab44054344643b2070b0dced9946cb6c7b855cb2493f7864200d92a2d203315",
+      "mlir_sha256": "b117289e77466e67aab5b9c3257a93ce1bf84dfeb0be7cbd3dda8d5410244cfa",
+      "object_sha256": "015054ca1c5b6c3939b8b2b4b25d9bcb8e2f05bcf0f18fea7c1b7add64d96684",
+      "inline_asm_ops": 0
+    },
+    {
+      "family": "vecadd",
+      "target": "kernel_ilp2_w8",
+      "status": "native_object_emitted",
+      "llvm_sha256": "ea5f254cd82972bda133447348e89ef37d1dbddb2e01f59a37e22fef4f2951b3",
+      "mlir_sha256": "bca4cb1a1a41b0a4552a664b8cdcfea66bc7546f2505d1b31f40421d70383d02",
+      "object_sha256": "df61adf5caafa74d308f784a3a1ee86a774e45b7a9c7d2948919a30eacd7681f",
+      "inline_asm_ops": 0
+    },
+    {
+      "family": "vecadd",
+      "target": "kernel_ilp4_w2",
+      "status": "native_object_emitted",
+      "llvm_sha256": "ff39f1083668fc5dfb16403da50846ce77399bc0abf865121c554a51528c6a8f",
+      "mlir_sha256": "a8ee2f3805423605b7a22c73bb7ca74796e670114280a0311e45a40053240783",
+      "object_sha256": "738c49636e53b3cabee6d40a9d7357f7d355c0c86a705128ab3a859fd2a420b4",
+      "inline_asm_ops": 0
+    },
+    {
+      "family": "vecadd",
+      "target": "kernel_ilp4_w8",
+      "status": "native_object_emitted",
+      "llvm_sha256": "dd3b847c5a274d766caef7e7be2384d8d05afc3933541060859a7dd511a85f14",
+      "mlir_sha256": "85e503378eb9ba8871d27bf513c7ddaf3a040ff981e7c86bb5c3dcca269a9fbd",
+      "object_sha256": "be04baf45439aceb3e28cbfa3a5bf2c84d4c83de9a39538c5eec92f8017e75c3",
+      "inline_asm_ops": 0
+    },
+    {
+      "family": "vecaddx",
+      "target": "vecaddx",
+      "status": "make_recipe_failed",
+      "error": "make dry run failed (2)",
+      "diagnostic": "make: *** No rule to make target 'vecaddx.mu.o'.  Stop."
+    }
+  ]
+}
