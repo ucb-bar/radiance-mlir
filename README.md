@@ -109,6 +109,16 @@ count, not a claim that all 136 source targets currently build. Generated
 inputs were prepared only in an isolated source worktree; the active
 `spatter-workloads` checkout was not edited. Object emission confirms
 importability and native code generation, not executable or numerical parity.
+`tools/compare_reference_objects.py` separately compiles each saved source
+LLVM file with the same Muon LLVM backend and compares its RV32 object with
+the MLIR-round-trip object. The pinned
+`evidence/reference-object-comparison-20261006.json` reports **110/110**
+identical loadable section bytes, BSS sizes, relocation records, and link
+symbols (excluding the source-file label, which the LLVM dialect exporter
+renames). This is object-level parity under the available Muon LLVM 18 build.
+That build predates the source Makefiles' stack-word-stride backend option, so
+the sweep omits that option for both direct and imported paths; the result
+does not qualify the final SoC stack ABI or prove linked execution.
 
 The pinned original-size STREAM Copy case in
 `evidence/stream-copy-llvm-import-20261006.json` linked the imported object
