@@ -8,7 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from profile import ProfileError, load_profile, require_format, verify_inputs  # noqa: E402
+from soc_profile import ProfileError, load_profile, require_format, verify_inputs  # noqa: E402
 
 
 def refuses(action, label: str) -> None:

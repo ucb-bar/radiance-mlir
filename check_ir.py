@@ -5,7 +5,7 @@ import argparse
 import subprocess
 from pathlib import Path
 
-from profile import _sha256, load_profile, verify_inputs
+from soc_profile import _sha256, load_profile, verify_inputs
 
 
 def main() -> int:
