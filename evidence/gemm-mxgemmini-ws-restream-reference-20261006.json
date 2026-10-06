@@ -1,0 +1,25 @@
+{
+  "schema": "radiance_mx_muon_reference_object.v1",
+  "scope": "handwritten source through LLVM-dialect MLIR; no typed MX or Muon lowering and no ELF execution",
+  "source_git_revision": "a27f6abd24830fdc7999d872d170ab778f1e662e",
+  "source": "kernels/gemm_mxgemmini_ws_restream/kernel.cpp",
+  "source_sha256": "02a902eff587326a883c77313bf670d1a5fafdc72f4e3aac66f76717a4836a05",
+  "source_data_sha256": "d3f6e85821d863af2b58ae5aaf60d983bcb4e81689aff0dd9df9630bb2e85ba0",
+  "mxgemm_header_sha256": "003302c019de637a02b285a90ca40f114a53341f6ee22bec774fd20310a7177d",
+  "mxgemmini_gitlink": "6fc8ec79bc828b33628ec951bfa1d0f65278a338",
+  "native_source_llvm_sha256": "def3f4ea6fece1c174955438384b3005b03e9672ba79ea32b1b1d1809c75eae5",
+  "imported_mlir_sha256": "6fa4a32863423947e3eaefa082d6656d762bfb31be3f70065bc9521adcc3123e",
+  "source_object_sha256": "be02e0458442553f7b99aeb298010fcd338f3e4a7b60f9d9107cb6443073fcde",
+  "imported_object_sha256": "1e9374564961875554a5a20d82183cb0219f86b0bffaba5c8b7bc92d4cd06e6e",
+  "source_text_sha256": "362d3e0ef8f0135ccd88cb25902292e45059fb95595517a551b6beb8b80e95cf",
+  "imported_text_sha256": "362d3e0ef8f0135ccd88cb25902292e45059fb95595517a551b6beb8b80e95cf",
+  "source_rodata_sha256": "518caae36f5178407c4f172d191b0b304fc55c035b9168447d75a11b34f30b4c",
+  "imported_rodata_sha256": "518caae36f5178407c4f172d191b0b304fc55c035b9168447d75a11b34f30b4c",
+  "text_and_rodata_identical": true,
+  "inline_asm_ops_in_mlir": 151,
+  "compatibility_edits": {
+    "captures_none": 5,
+    "gep_no_wrap": 31,
+    "lifetime_hint_lines": 4
+  }
+}

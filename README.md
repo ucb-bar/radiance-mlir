@@ -83,8 +83,9 @@ golden output.
 `tools/import_llvm_reference.py` imports native Muon LLVM IR into LLVM-dialect
 MLIR, exports LLVM IR, and compiles it with the Muon LLVM 18 backend. Use an
 LLVM 23 `mlir-translate` to preserve source inline assembly. The tool removes
-only LLVM 23's `captures(none)` parameter attribute, which LLVM 18 cannot
-parse, and rejects other capture attributes. Its JSON report records source,
+LLVM 23's `captures(none)` parameter attribute and GEP no-wrap flags, which
+LLVM 18 cannot parse, and lifetime hints whose signature changed between
+releases. It rejects other capture attributes. Its JSON report records source,
 MLIR, and object hashes and counts inline assembly ops. This path provides a
 coverage baseline for the handwritten kernels; it does not use the typed
 Muon or MX dialect lowering passes.
@@ -96,3 +97,10 @@ with the same data and runtime as the source ELF. Cyclotron checked all
 `49fabae987622325`; source and imported paths took 2,104,119 and 2,102,449
 timing-model cycles respectively. Other kernel families still need separate
 import and semantic checks before this baseline establishes broad coverage.
+
+`evidence/gemm-mxgemmini-ws-restream-reference-20261006.json` pins a mixed
+MX/Muon source from the active radiance-kernels checkout. After importing its
+native LLVM IR into MLIR and recompiling, the source and imported RV32 objects
+had identical `.text` and `.rodata` bytes. The MLIR retained 151 inline
+assembly ops. That is an instruction-level reference check; the mixed kernel
+has not yet been linked, run, or expressed as typed MX and Muon ops.

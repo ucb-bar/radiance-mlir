@@ -52,13 +52,30 @@ def main() -> None:
     run([translator, "--mlir-to-llvmir", str(mlir), "-o", str(exported)],
         output / "export.log")
     text = exported.read_text()
-    # LLVM 23 prints this conservative parameter attribute; LLVM 18 rejects
-    # its syntax. Removing it cannot strengthen an optimization assumption.
+    # LLVM 23 prints these conservative attributes; LLVM 18 rejects their
+    # syntax. Removing them cannot strengthen an optimization assumption.
     other_capture = re.search(r"\bcaptures\((?!none\))", text)
     if other_capture:
         raise RuntimeError("unsupported LLVM 23 capture attribute; see reference.exported.ll")
     removed = text.count(" captures(none)")
-    compatible.write_text(text.replace(" captures(none)", ""))
+    text = text.replace(" captures(none)", "")
+    gep_flags = re.compile(r"(getelementptr(?: inbounds)?) (?:nuw |nusw )+(\()")
+    text, removed_gep_flags = gep_flags.subn(r"\1 \2", text)
+    # LLVM 23 changed the lifetime intrinsic from (i64 size, ptr) to (ptr).
+    # These are optimizer hints with no runtime effect; LLVM 18 must not see
+    # the new signature, so discard its calls and declarations.
+    lifetime = re.compile(r"@llvm\.lifetime\.(?:start|end)\.p0\(")
+    kept_lines = []
+    removed_lifetime_lines = 0
+    for line in text.splitlines(keepends=True):
+        if lifetime.search(line) and re.match(r"\s*(?:(?:tail|musttail|notail) )?call void |declare void ", line):
+            removed_lifetime_lines += 1
+            continue
+        kept_lines.append(line)
+    text = "".join(kept_lines)
+    if lifetime.search(text):
+        raise RuntimeError("unsupported LLVM 23 lifetime intrinsic use")
+    compatible.write_text(text)
     run([clang, "-target", "riscv32-unknown-elf", "-march=rv32im_zfinx_zhinx",
          "-mabi=ilp32", "-Xclang", "-target-feature", "-Xclang", "+vortex",
          "-O3", "-mcmodel=medany", *args.native_flag,
@@ -72,6 +89,8 @@ def main() -> None:
         "mlir_sha256": digest(mlir), "exported_llvm_sha256": digest(exported),
         "native_llvm_sha256": digest(compatible), "native_object_sha256": digest(native),
         "removed_captures_none_attributes": removed,
+        "removed_gep_no_wrap_flags": removed_gep_flags,
+        "removed_lifetime_hint_lines": removed_lifetime_lines,
         "inline_asm_ops": mlir.read_text().count("llvm.inline_asm"),
     }
     (output / "report.json").write_text(json.dumps(report, indent=2) + "\n")
