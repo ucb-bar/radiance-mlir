@@ -31,6 +31,9 @@ one-shot bufferization and `convert-linalg-to-parallel-loops` pipeline emits
 the explicit `scf.parallel` loop in
 `evidence/model2mlir_stream_triad_parallel_20261006.mlir`. This IR is the
 current handoff point for Muon thread distribution; it has no Muon launch.
+The `muon-mlir` driver accepts this parallel IR for native Muon LLVM IR
+translation and records it as undistributed. It refuses target object and
+ELF emission until a Muon launch is present.
 
 `tests/run_model2mlir_stream_host.py` binds to the capture receipt and
 compiles its parallel-loop MLIR through upstream LLVM dialect lowering and
