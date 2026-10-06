@@ -20,6 +20,12 @@ def sha(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def normalize_generated_ir(path: Path) -> str:
+    normalized = "\n".join(line.rstrip() for line in path.read_text().splitlines()).rstrip() + "\n"
+    path.write_text(normalized)
+    return normalized
+
+
 def git(root: Path, *args: str) -> str:
     return subprocess.check_output(["git", "-C", str(root), *args], text=True).strip()
 
@@ -33,6 +39,8 @@ def main() -> None:
     parser.add_argument("--muon-opt", type=Path, required=True)
     parser.add_argument("--mx-opt", type=Path, required=True)
     parser.add_argument("--radiance-opt", type=Path, required=True)
+    parser.add_argument("--mlir-opt", type=Path, required=True,
+                        help="upstream MLIR tool used to fuse captured elementwise ops")
     args = parser.parse_args()
     if args.elements < 2 or args.elements & 1:
         parser.error("--elements must be an even integer of at least two")
@@ -91,16 +99,49 @@ def main() -> None:
             raise RuntimeError(f"model2MLIR {kind} left opaque calls: {opaque}")
         mlir = out / f"stream_{kind}.model2mlir.mlir"
         mlir.write_text(result.mlir_text)
-        for name, tool in (("muon", args.muon_opt), ("mx", args.mx_opt),
-                           ("radiance", args.radiance_opt)):
-            parsed = subprocess.run([str(tool.resolve()), str(mlir), "-o", "/dev/null"],
-                                    capture_output=True, text=True)
-            (out / f"stream_{kind}.{name}.log").write_text(parsed.stdout + parsed.stderr)
-            if parsed.returncode:
-                raise RuntimeError(f"{name} rejected {kind}; see parse log")
+        fused = out / f"stream_{kind}.fused.mlir"
+        optimized = subprocess.run([
+            str(args.mlir_opt.resolve()), str(mlir),
+            "--linalg-fuse-elementwise-ops", "--canonicalize", "--cse",
+            "-o", str(fused)], capture_output=True, text=True)
+        (out / f"stream_{kind}.fusion.log").write_text(
+            optimized.stdout + optimized.stderr)
+        if optimized.returncode:
+            raise RuntimeError(f"upstream MLIR fusion failed for {kind}")
+        fused_text = normalize_generated_ir(fused)
+        if kind == "triad" and (fused_text.count("linalg.generic") != 1 or
+                                "arith.mulf" not in fused_text or
+                                "arith.addf" not in fused_text):
+            raise RuntimeError("Triad did not fuse into one multiply-add loop")
+        parallel = out / f"stream_{kind}.parallel.mlir"
+        bufferized = subprocess.run([
+            str(args.mlir_opt.resolve()), str(fused),
+            "--one-shot-bufferize=bufferize-function-boundaries",
+            "--convert-linalg-to-parallel-loops", "-o", str(parallel)],
+            capture_output=True, text=True)
+        (out / f"stream_{kind}.bufferization.log").write_text(
+            bufferized.stdout + bufferized.stderr)
+        if bufferized.returncode:
+            raise RuntimeError(f"upstream MLIR bufferization failed for {kind}")
+        parallel_text = normalize_generated_ir(parallel)
+        if kind != "copy" and "scf.parallel" not in parallel_text:
+            raise RuntimeError(f"{kind} did not lower to an explicit parallel loop")
+        for stage, artifact in (("captured", mlir), ("fused", fused),
+                                ("parallel", parallel)):
+            for name, tool in (("muon", args.muon_opt), ("mx", args.mx_opt),
+                               ("radiance", args.radiance_opt)):
+                parsed = subprocess.run([str(tool.resolve()), str(artifact),
+                                         "-o", "/dev/null"],
+                                        capture_output=True, text=True)
+                (out / f"stream_{kind}.{stage}.{name}.log").write_text(
+                    parsed.stdout + parsed.stderr)
+                if parsed.returncode:
+                    raise RuntimeError(f"{name} rejected {kind} {stage}; see parse log")
         cases.append({"kind": kind, "elements_compared": args.elements,
                       "expected_digest": f"{reference.digest(expected.tolist()):016x}",
                       "captured_mlir_sha256": sha(mlir), "opaque_calls": opaque,
+                      "fused_mlir_sha256": sha(fused),
+                      "parallel_mlir_sha256": sha(parallel),
                       "model2mlir_path": result.path_taken})
     tree = {str(path.relative_to(m2m_root)): sha(path)
             for path in sorted((m2m_root / "m2m").rglob("*.py"))}
@@ -112,6 +153,10 @@ def main() -> None:
                "model2mlir_source_tree_sha256": hashlib.sha256(
                    json.dumps(tree, sort_keys=True).encode()).hexdigest(),
                "model2mlir_worktree_status": git(m2m_root, "status", "--short").splitlines(),
+               "mlir_opt_sha256": sha(args.mlir_opt.resolve()),
+               "fusion_pipeline": ["linalg-fuse-elementwise-ops", "canonicalize", "cse"],
+               "loop_pipeline": ["one-shot-bufferize=bufferize-function-boundaries",
+                                 "convert-linalg-to-parallel-loops"],
                "cases": cases}
     destination = out / "receipt.json"
     destination.write_text(json.dumps(receipt, indent=2) + "\n")
