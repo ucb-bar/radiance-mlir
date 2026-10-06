@@ -1,0 +1,11 @@
+schema: radiance.soc_profile.v1
+name: single-cluster-full-mx
+status: simulator_profile_pending_qualification
+config: RadianceSingleClusterConfig
+muon: {clusters: 1, cores_per_cluster: 2, lanes_per_warp: 16, max_warps_per_core: 8}
+shared_memory: {bytes_per_cluster: 131072, banks: 4}
+mx: {formats: [mxfp8, mxfp6, mxfp4], element_format: selectable, lut: true, mesh_rows: 16, mesh_columns: 16}
+notes: >-
+  Separate simulator profile for format-capable Radiance RTL. It is not the U250
+  bitstream; executable admission requires source-bound RTL facts and simulator
+  qualification for each format and command sequence.

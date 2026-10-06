@@ -1,0 +1,21 @@
+schema: radiance.soc_profile.v1
+name: u250-e4m3
+status: bitstream_observed_source_candidate_dirty
+config: FireSimE4M3MxGemminiRadianceConfig
+base_config: RadianceE4M3MxGemminiSingleClusterConfig
+muon: {clusters: 1, cores_per_cluster: 2, lanes_per_warp: 16, max_warps_per_core: 8}
+shared_memory: {bytes_per_cluster: 131072, banks: 4}
+mx: {formats: [mxfp8], element_format: e4m3, lut: false, mesh_rows: 16, mesh_columns: 16}
+source_files:
+  generators/firechip/chip/src/main/scala/TargetConfigs.scala: 8a6804f2a7610f3da54868cf0ae090730bcfcaae4b98b117528f3050cb23083c
+  generators/radiance/chipyard/RadianceConfigs.scala: 1a1c854b8789959f03dd107a2c50f3d04e97eb2342e9c68c3569f74a216fab78
+  generators/radiance/src/main/scala/radiance/subsystem/Configs.scala: 4d0194bc84cbbb01d3b2f2bb487229c78c1bcfc694a8a989b0fbfa7c4d5ba3d7
+  generators/gemmini/src/main/scala/gemmini/ConfigsFP.scala: 7e246f5031606cac2259ebf3be7d9dc723b802a2b8f4ae585cc06d27c93d1c1d
+device_tree_sha256: 36180fb27e286fc5a6542c5677167ef696f9752b06367ca70a72c75bec978565
+bitstream_archive_sha256: cfa8bce8c76d216c12a5771337566a0c543cde74330fcf5323094f215ce4c3cc
+bitstream_sha256: c98c7c5761bcd496c5ca12f48a1500be2c35edcf11c16066124fe89e7c1b2ade
+firesim_revision: b084672c2f8cf32e55d78f73a001074c23f8a2b8-dirty
+notes: >-
+  The bitstream identity and device tree are observed. The source checkout is dirty
+  and the exact build-time diff has not been recovered; source_files identify a
+  candidate closure, not a proven bitstream-to-source equivalence.
