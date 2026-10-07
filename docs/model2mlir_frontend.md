@@ -35,6 +35,9 @@ current handoff point for Muon thread distribution; it has no Muon launch.
 The `muon-mlir` driver accepts this parallel IR for native Muon LLVM IR
 translation and records it as undistributed. It refuses target object and
 ELF emission until a Muon launch is present.
+Muon now has a separate callback-local `scf.parallel` distribution pass.
+Outlining these captured `forward` functions into callbacks with target
+buffers is the remaining bridge between this IR and that pass.
 
 `tests/run_model2mlir_stream_host.py` binds to the capture receipt and
 compiles its parallel-loop MLIR through upstream LLVM dialect lowering and
@@ -74,8 +77,9 @@ is not a substitute for the source `mx_golden`. The current MX capture does
 not yet bind source blobs or compare accelerator results.
 
 These captures are the frontend inputs for target lowering, not target
-programs. The next Muon compiler step is to distribute the generated
-parallel loops onto Muon launches and emit
+programs. The next Muon compiler step is to outline the captured functions
+as Muon callbacks, bind their target buffers, distribute their parallel
+loops across Muon lanes, and emit
 native RV32 objects using a toolchain that supports the required stack
 stride. The next MX step is to lower selected handoff sites into actual MX
 operand loads, commands, waits, and readout with complete source-golden

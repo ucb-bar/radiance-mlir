@@ -18,6 +18,7 @@
 int main(int argc, char **argv) {
   radiance::registerVerifyProfilePass();
   mlir::muon::registerLowerRuntimePass();
+  mlir::muon::registerDistributeParallelPass();
   mlir::DialectRegistry registry;
   registry.insert<mlir::muon::MuonDialect, mlir::mx_gemmini::MxGemminiDialect,
                   mlir::func::FuncDialect, mlir::LLVM::LLVMDialect,
