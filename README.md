@@ -20,7 +20,9 @@ destination writes still need lowering. Muon now outlines the four captured
 STREAM functions into callbacks with source ABI storage symbols, distributes
 their loops across Muon lanes, and matches every source output word in host
 execution. It also outlines and runs the captured Spatter Gather read trace
-through a Muon callback, matching all 262,144 source reads. MX commands and
+through a Muon callback, matching all 262,144 source reads. The captured
+SIMT GEMM also runs as a staged Muon callback with barriers and matches all
+4,096 source BF16 golden words in host execution. MX commands and
 mixed-engine execution remain to be implemented.
 
 Use the `handwritten-implementation` branches of both `muon-mlir` and

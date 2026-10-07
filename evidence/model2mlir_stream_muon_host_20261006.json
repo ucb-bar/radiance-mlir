@@ -5,7 +5,7 @@
   "source_run_sha256": "ea709456f78e3c06934b6eb626bd9077257404c0015db00ff015bb3abdafa2d3",
   "capture_receipt_sha256": "2ecc7f9e735b753a3076fab2f25775bb3b98c391d5ee70b5f00c732bfdb4de36",
   "model2mlir_revision": "6417caa67d3bbc33c3cdee015204c9413e57714b",
-  "muon_opt_sha256": "ffe3c302214fa3be779e3a2e23746114761ac0207ec1e05e61c0548575a355c8",
+  "muon_opt_sha256": "94312508422a53427e54fdada27e4b9311f97b50418ed921363d90eb144aa001",
   "harness_sha256": "cb3b25446ebbbdb998822e801a7e417c4693eb69c5842028400bcc76a6cf6240",
   "cases": [
     {

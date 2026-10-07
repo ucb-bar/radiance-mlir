@@ -69,6 +69,17 @@ host output matched every source golden word; the executable and IR hashes
 are in `evidence/model2mlir_gemm_simt_host_20261006.json`. This checks the
 generated typed MLIR computation, not the Muon target schedule.
 
+`tests/run_model2mlir_gemm_muon_host.py` takes the exact captured module,
+bufferizes it with upstream MLIR into five parallel stages, and outlines it
+into a Muon callback. Three intermediate buffers become module scratch
+globals; a fence and four-warp barrier separate stages. A 64-lane host
+scheduler executes the callback, and all 4,096 BF16 output words match the
+handwritten source generator's golden. The result and IR hashes are in
+`evidence/model2mlir_gemm_simt_muon_host_20261006.json`; native Muon LLVM IR
+also translates. Scratch capacity and barrier behavior on the selected
+device still need qualification. The generated schedule has not been
+performance-compared with the handwritten tiled shared-memory kernel.
+
 `tests/capture_model2mlir_spatter_gather.py` captures every Gather read in
 the original `gpu-stream` case through a PyTorch embedding operation. The
 index expression comes from the source transfer plan. Upstream fusion
@@ -98,9 +109,9 @@ FP8 code and E8M0 scale blobs are the numerical oracle; ideal PyTorch matmul
 is not a substitute for the source `mx_golden`. The current MX capture does
 not yet bind source blobs or compare accelerator results.
 
-These captures are the frontend inputs for target lowering. The STREAM and
-Gather read-trace captures now reach Muon callback LLVM IR with full host
-execution. The next Muon compiler step is to handle SIMT GEMM and Spatter
+These captures are the frontend inputs for target lowering. The STREAM,
+Gather read-trace, and SIMT GEMM captures now reach Muon callback LLVM IR
+with full host execution. The next Muon compiler step is to handle Spatter
 destination storage effects, then emit native RV32 objects using a toolchain
 that supports the required stack stride. The next MX step is to lower selected handoff sites into actual MX
 operand loads, commands, waits, and readout with complete source-golden
