@@ -1,7 +1,7 @@
 # Source-anchored model2MLIR frontend
 
 The reproducible PyTorch frontend for PyTorch-expressible Radiance kernels is
-model2MLIR `main` at `1224a05f66bee0e296f2cccc292e7d0a70b74bf6`
+model2MLIR `main` at `6417caa67d3bbc33c3cdee015204c9413e57714b`
 (verified as the latest upstream `main` on 2026-10-06). The active local
 model2MLIR development worktree has unrelated edits; the captures use a clean
 isolated checkout of that exact commit. Scripts require an explicit
@@ -13,9 +13,10 @@ The reference is the local `radiance-kernels` revision
 | --- | --- | --- |
 | STREAM Copy, Scale, Add, Triad | Every FP32 result for 1,048,576 elements per operation matches `kernels/stream/run.py`; FNV digests match the source formulas | Four tensor modules, zero opaque calls; upstream fusion and bufferization produce explicit parallel loops for Scale/Add/Triad; all stages parse in all three OOT tools |
 | SIMT GEMM | All 4,096 BF16 output words match the `kernels/gemm_simt/gemm.py` generated golden | `linalg.matmul`, zero opaque calls, parsed by all three OOT tools; compiled host output matches all source golden words |
+| Spatter Gather read trace | All 262,144 reads in the checked-in `gpu-stream` case match `kernels/spatter/run.py` and `plan.py`; the last-iteration digest equals the source final output | Dynamic `pattern[j] + delta * iteration` and gather fuse into one parallel loop; compiled host trace matches every source read |
 | MX FP8 GEMM | 64×64×64 shape and operator selected from `kernels/gemm_mxgemmini/gen_mxgemm_data.py` | One `functional:matmul` site selected by the MX adapter; handoff parsed by MX and Radiance tools |
 
-Run the two scripts in this repository and the MX script in `mx-gemmini-mlir`
+Run the three capture scripts in this repository and the MX script in `mx-gemmini-mlir`
 with the same clean model2MLIR checkout, its Python environment, the pinned
 source checkout, and built `muon-opt`, `mx-gemmini-opt`, and `radiance-opt`.
 The scripts take explicit tool paths and write MLIR, parse logs, and hashed
@@ -52,6 +53,18 @@ MLIR to host LLVM IR, and compares all 4,096 BF16 result words. The compiled
 host output matched every source golden word; the executable and IR hashes
 are in `evidence/model2mlir_gemm_simt_host_20261006.json`. This checks the
 generated typed MLIR computation, not the Muon target schedule.
+
+`tests/capture_model2mlir_spatter_gather.py` captures every Gather read in
+the original `gpu-stream` case through a PyTorch embedding operation. The
+index expression comes from the source transfer plan. Upstream fusion
+produces one parallel loop containing the source address arithmetic and
+load. `tests/run_model2mlir_spatter_gather_host.py` compiles that loop and
+checks all 262,144 transfer values plus the source final digest
+`b0f2661f6d70c8cf`. The read trace stores each transfer separately. The
+handwritten kernel repeatedly writes the same dense destination, so this
+capture does not yet implement the destination memory behavior or qualify
+Muon throughput. Source-derived Muon MLIR with the repeated writes and
+Cyclotron comparison remains in `muon-mlir`.
 
 For the MX case, the model2MLIR external quantization API uses the MX OOT
 adapter and the `microscaling-quant` operand capture package. The PyTorch

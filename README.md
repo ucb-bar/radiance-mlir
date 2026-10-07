@@ -14,8 +14,10 @@ uses the MX package's quantization adapter and emits a verified MX handoff.
 Standard MLIR fusion and bufferization expose STREAM parallel loops; host
 executables produced from those loops match every source output word.
 SIMT GEMM also compiles from captured `linalg.matmul` to a host executable
-and matches all 4,096 source BF16 golden words. Muon distribution, MX
-commands, and mixed-engine execution remain to be implemented.
+and matches all 4,096 source BF16 golden words. A source-derived Spatter
+Gather trace compiles and matches all 262,144 reads; its repeated dense
+destination writes still need lowering. Muon distribution, MX commands,
+and mixed-engine execution remain to be implemented.
 
 Use the `handwritten-implementation` branches of both `muon-mlir` and
 `mx-gemmini-mlir` for the build below. The MX branch adds `readout_to_smem`
