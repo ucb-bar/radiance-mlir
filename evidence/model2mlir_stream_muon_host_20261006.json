@@ -3,8 +3,8 @@
   "status": "muon_callback_full_output_host_execution_not_device",
   "source_revision": "a27f6abd24830fdc7999d872d170ab778f1e662e",
   "source_run_sha256": "ea709456f78e3c06934b6eb626bd9077257404c0015db00ff015bb3abdafa2d3",
-  "capture_receipt_sha256": "2ecc7f9e735b753a3076fab2f25775bb3b98c391d5ee70b5f00c732bfdb4de36",
-  "model2mlir_revision": "6417caa67d3bbc33c3cdee015204c9413e57714b",
+  "capture_receipt_sha256": "d6a1d2aed43ca899902eb99cf125cc7975ccfee0803d52bf1b51ab1f45249b5f",
+  "model2mlir_revision": "bd50ee568952a4313721186dc8ac73bf0b918dfa",
   "muon_opt_sha256": "94312508422a53427e54fdada27e4b9311f97b50418ed921363d90eb144aa001",
   "harness_sha256": "cb3b25446ebbbdb998822e801a7e417c4693eb69c5842028400bcc76a6cf6240",
   "cases": [
