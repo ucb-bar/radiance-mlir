@@ -33,11 +33,13 @@ the explicit `scf.parallel` loop in
 `evidence/model2mlir_stream_triad_parallel_20261006.mlir`. This IR is the
 current handoff point for Muon thread distribution; it has no Muon launch.
 The `muon-mlir` driver accepts this parallel IR for native Muon LLVM IR
-translation and records it as undistributed. It refuses target object and
-ELF emission until a Muon launch is present.
-Muon now has a separate callback-local `scf.parallel` distribution pass.
-Outlining these captured `forward` functions into callbacks with target
-buffers is the remaining bridge between this IR and that pass.
+translation. Without storage binding it records the IR as undistributed and
+refuses target object and ELF emission. With explicit source storage symbols,
+the new Muon outlining pass clones the bufferized `forward` computation into
+a callback, emits the launch and fence, and distributes its parallel loop
+over callback lanes. For Copy, upstream simplifies `clone()` to an identity
+return; the outliner materializes the required parallel copy into the bound
+output buffer.
 
 `tests/run_model2mlir_stream_host.py` binds to the capture receipt and
 compiles its parallel-loop MLIR through upstream LLVM dialect lowering and
@@ -48,6 +50,16 @@ against source-generated expected blobs. The four host executables passed;
 hashes and complete output digests. Host execution proves the current typed
 frontend and standard lowering semantics for these four kernels. It does not
 qualify Muon scheduling, the RV32 stack ABI, or SoC execution.
+
+`tests/run_model2mlir_stream_muon_host.py` binds the same captured IR to the
+source ABI symbols `stream_a`, `stream_b`, and `stream_c`, then runs the Muon
+outline, distribute, and runtime passes. A two-block host scheduler invokes
+the resulting callback. All four one-million-element outputs match the source
+word for word and have the expected FNV digest. The full results and generated
+LLVM IR hashes are in
+`evidence/model2mlir_stream_muon_host_20261006.json`. This validates the
+captured computation and Muon callback mapping on a host, not device timing,
+RV32 stack behavior, or FPGA execution.
 
 `tests/run_model2mlir_gemm_host.py` similarly binds the GEMM capture receipt,
 reads the handwritten generator's actual `A_raw`, `B_raw`, and
@@ -69,6 +81,16 @@ capture does not yet implement the destination memory behavior or qualify
 Muon throughput. Source-derived Muon MLIR with the repeated writes and
 Cyclotron comparison remains in `muon-mlir`.
 
+`tests/run_model2mlir_spatter_muon_host.py` also outlines that exact captured
+three-dimensional loop into a Muon callback, distributes it over two blocks,
+and executes the callback with source inputs. Every one of the 262,144 read
+values and the final digest match. The receipt is
+`evidence/model2mlir_spatter_muon_host_20261006.json`. The older native Muon
+MLIR parser needs newer upstream `mlir-opt` to normalize
+`memref.expand_shape` syntax before it can translate this callback; the Muon
+driver exposes this as `--upstream-mlir-opt`. It reaches native Muon LLVM IR,
+but the dense destination write program is still separate.
+
 For the MX case, the model2MLIR external quantization API uses the MX OOT
 adapter and the `microscaling-quant` operand capture package. The PyTorch
 graph establishes contraction identity and target selection. The handwritten
@@ -76,12 +98,11 @@ FP8 code and E8M0 scale blobs are the numerical oracle; ideal PyTorch matmul
 is not a substitute for the source `mx_golden`. The current MX capture does
 not yet bind source blobs or compare accelerator results.
 
-These captures are the frontend inputs for target lowering, not target
-programs. The next Muon compiler step is to outline the captured functions
-as Muon callbacks, bind their target buffers, distribute their parallel
-loops across Muon lanes, and emit
-native RV32 objects using a toolchain that supports the required stack
-stride. The next MX step is to lower selected handoff sites into actual MX
+These captures are the frontend inputs for target lowering. The STREAM and
+Gather read-trace captures now reach Muon callback LLVM IR with full host
+execution. The next Muon compiler step is to handle SIMT GEMM and Spatter
+destination storage effects, then emit native RV32 objects using a toolchain
+that supports the required stack stride. The next MX step is to lower selected handoff sites into actual MX
 operand loads, commands, waits, and readout with complete source-golden
 comparison. Radiance then combines the two executable paths and checks
 cross-engine synchronization under an artifact-bound SoC profile. The

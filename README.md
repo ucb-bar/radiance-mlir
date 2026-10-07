@@ -16,10 +16,12 @@ executables produced from those loops match every source output word.
 SIMT GEMM also compiles from captured `linalg.matmul` to a host executable
 and matches all 4,096 source BF16 golden words. A source-derived Spatter
 Gather trace compiles and matches all 262,144 reads; its repeated dense
-destination writes still need lowering. Muon now distributes parallel loops
-inside callbacks; captured functions still need callback outlining and buffer
-binding before using that pass. MX commands and mixed-engine execution also
-remain to be implemented.
+destination writes still need lowering. Muon now outlines the four captured
+STREAM functions into callbacks with source ABI storage symbols, distributes
+their loops across Muon lanes, and matches every source output word in host
+execution. It also outlines and runs the captured Spatter Gather read trace
+through a Muon callback, matching all 262,144 source reads. MX commands and
+mixed-engine execution remain to be implemented.
 
 Use the `handwritten-implementation` branches of both `muon-mlir` and
 `mx-gemmini-mlir` for the build below. The MX branch adds `readout_to_smem`
