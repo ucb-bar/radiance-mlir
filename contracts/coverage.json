@@ -1,0 +1,56 @@
+{
+  "schema": "radiance.coverage.v1",
+  "source_revision": "a27f6abd24830fdc7999d872d170ab778f1e662e",
+  "claims": [
+    {
+      "family": "stream",
+      "level": "host_callback",
+      "scope": "source_golden_output",
+      "route": "radiance",
+      "receipt": "evidence/model2mlir_stream_muon_host_20261007.json",
+      "receipt_sha256": "f2223878711db886d29dd124c28d5d7eb6c23893432e22d63d4339c706aa9b4b",
+      "receipt_schema": "radiance_model2mlir_stream_muon_host.v1",
+      "receipt_status": "muon_callback_full_output_host_execution_not_device"
+    },
+    {
+      "family": "gemm_simt",
+      "level": "host_callback",
+      "scope": "source_golden_output",
+      "route": "radiance",
+      "receipt": "evidence/model2mlir_gemm_simt_muon_host_20261007.json",
+      "receipt_sha256": "cee288c8a3f05aa48f5a9a52d0df4531ccb15f5bd62a962792602cadbe00abad",
+      "receipt_schema": "radiance_model2mlir_gemm_muon_host.v1",
+      "receipt_status": "muon_callback_full_output_host_not_device"
+    },
+    {
+      "family": "spatter",
+      "level": "host_callback",
+      "scope": "read_trace_only",
+      "route": "radiance",
+      "receipt": "evidence/model2mlir_spatter_muon_host_20261007.json",
+      "receipt_sha256": "ab321f54d8fc327c6f63c5c75b78e1817e50af53526b37242af925ed1c25f955",
+      "receipt_schema": "radiance_model2mlir_spatter_muon_host.v1",
+      "receipt_status": "muon_callback_full_read_trace_host_not_destination_writes"
+    },
+    {
+      "family": "gemm_mxgemmini",
+      "level": "frontend_handoff",
+      "scope": "shape_only",
+      "route": "radiance",
+      "receipt": "evidence/upstream/model2mlir_radiance_mx_gemm_20261007.json",
+      "receipt_sha256": "91f0034fd348dbf9e9efb8ebb35b8004f23e611422b0368e7bef60bc67197248",
+      "receipt_schema": "mx_gemmini_model2mlir_radiance_gemm_capture.v1",
+      "receipt_status": "source_shape_frontend_handoff_only"
+    },
+    {
+      "family": "gemm_mxgemmini",
+      "level": "source_payload",
+      "scope": "fp8_m128n128k512_payload",
+      "route": "radiance",
+      "receipt": "evidence/upstream/radiance_mx_fp8_m128n128k512_payload_20261007.json",
+      "receipt_sha256": "67f443005b04935c42812e088ab95af7f6730458d0e07eb085d341895b3aa40a",
+      "receipt_schema": "mx_gemmini.source_payload_check.v1",
+      "receipt_status": "analytical_byte_parity_not_executed"
+    }
+  ]
+}

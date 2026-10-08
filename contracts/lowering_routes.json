@@ -1,0 +1,36 @@
+{
+  "schema": "radiance.lowering_routes.v1",
+  "routes": [
+    {
+      "id": "mx_commands",
+      "owner": "mx-gemmini-mlir",
+      "accelerator_lowering": "typed_mx_contract_to_physical_commands",
+      "llvm_role": "issuer_backends_only",
+      "transport": "rv64_rocc_or_muon_mmio",
+      "required_proofs": ["physical_schedule", "rocc_issuer", "muon_mmio_issuer", "rocc_source_output_parity", "mmio_source_output_parity"],
+      "validation_receipts": [],
+      "status": "partial"
+    },
+    {
+      "id": "muon",
+      "owner": "muon-mlir",
+      "accelerator_lowering": "typed_muon_ops_to_runtime_abi",
+      "llvm_role": "native_muon_rv32_backend_required",
+      "transport": "muon_rv32_elf",
+      "required_proofs": ["stack_abi", "rv32_executable", "source_output_parity"],
+      "validation_receipts": [],
+      "status": "partial"
+    },
+    {
+      "id": "radiance",
+      "owner": "radiance-mlir",
+      "accelerator_lowering": "compose_muon_and_mx_without_new_compute_dialect",
+      "llvm_role": "rv64_host_and_native_muon_rv32_backend",
+      "transport": "mx_mmio_from_muon_plus_host_abi",
+      "required_proofs": ["profile_identity", "mixed_artifact_link", "handoff_order", "mixed_execution", "source_output_parity"],
+      "validation_receipts": [],
+      "status": "partial"
+    }
+  ],
+  "merlin_boundary": "target_neutral_provider_and_artifact_bundle_only"
+}

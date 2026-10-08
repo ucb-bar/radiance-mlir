@@ -1,0 +1,463 @@
+{
+  "schema": "radiance.source_roster.v1",
+  "source_revision": "a27f6abd24830fdc7999d872d170ab778f1e662e",
+  "inventory_schema": "muon_mlir_kernel_inventory.v2",
+  "inventory_sha256": "46735b70f2c8861406d4b4b45f3aa8583fc82990602f8a85143eaaabefb63c64",
+  "families": [
+    {
+      "name": "address_space",
+      "radiance_elfs": []
+    },
+    {
+      "name": "bad_apple",
+      "radiance_elfs": [
+        "bad_apple.radiance.elf"
+      ]
+    },
+    {
+      "name": "bfs",
+      "radiance_elfs": [
+        "bfs1_l0.radiance.elf",
+        "bfs2_l0.radiance.elf",
+        "bfs1_l1.radiance.elf",
+        "bfs2_l1.radiance.elf",
+        "bfs1_l2.radiance.elf",
+        "bfs2_l2.radiance.elf"
+      ]
+    },
+    {
+      "name": "bias_add",
+      "radiance_elfs": [
+        "kernel.radiance.elf"
+      ]
+    },
+    {
+      "name": "embed_scale",
+      "radiance_elfs": [
+        "kernel.radiance.elf"
+      ]
+    },
+    {
+      "name": "fa_mx_hostsf",
+      "radiance_elfs": [
+        "flash_attention_mx.radiance.elf"
+      ]
+    },
+    {
+      "name": "fa_stable_fpga",
+      "radiance_elfs": [
+        "kernel.radiance.elf"
+      ]
+    },
+    {
+      "name": "flash_attention",
+      "radiance_elfs": [
+        "flash_attention.radiance.elf"
+      ]
+    },
+    {
+      "name": "flash_attention_mx",
+      "radiance_elfs": [
+        "flash_attention_mx.radiance.elf"
+      ]
+    },
+    {
+      "name": "flash_attention_mx_fp6",
+      "radiance_elfs": [
+        "kernel.radiance.elf"
+      ]
+    },
+    {
+      "name": "flash_attention_mx_gemma",
+      "radiance_elfs": [
+        "kernel.radiance.elf"
+      ]
+    },
+    {
+      "name": "flash_attention_mx_gqa",
+      "radiance_elfs": [
+        "kernel.radiance.elf"
+      ]
+    },
+    {
+      "name": "flash_attention_mx_stable",
+      "radiance_elfs": [
+        "kernel.radiance.elf"
+      ]
+    },
+    {
+      "name": "flash_attention_virgo",
+      "radiance_elfs": [
+        "flash_attention.radiance.elf"
+      ]
+    },
+    {
+      "name": "fmastore",
+      "radiance_elfs": [
+        "kernel.radiance.elf",
+        "kernel_store_k1_w1.radiance.elf",
+        "kernel_store_k1_w2.radiance.elf",
+        "kernel_store_k1_w4.radiance.elf",
+        "kernel_store_k1_w8.radiance.elf",
+        "kernel_store_k2_w1.radiance.elf",
+        "kernel_store_k2_w2.radiance.elf",
+        "kernel_store_k2_w4.radiance.elf",
+        "kernel_store_k2_w8.radiance.elf",
+        "kernel_store_k4_w1.radiance.elf",
+        "kernel_store_k4_w2.radiance.elf",
+        "kernel_store_k4_w4.radiance.elf",
+        "kernel_store_k4_w8.radiance.elf",
+        "kernel_store_k8_w1.radiance.elf",
+        "kernel_store_k8_w2.radiance.elf",
+        "kernel_store_k8_w4.radiance.elf",
+        "kernel_store_k8_w8.radiance.elf",
+        "kernel_fmadd_k1_w1.radiance.elf",
+        "kernel_fmadd_k2_w1.radiance.elf",
+        "kernel_fmadd_k4_w1.radiance.elf",
+        "kernel_fmadd_k8_w1.radiance.elf"
+      ]
+    },
+    {
+      "name": "gaussian",
+      "radiance_elfs": [
+        "fan1_t0.radiance.elf",
+        "fan2_t0.radiance.elf",
+        "fan1_t1.radiance.elf",
+        "fan2_t1.radiance.elf",
+        "fan1_t2.radiance.elf",
+        "fan2_t2.radiance.elf",
+        "fan1_t3.radiance.elf",
+        "fan2_t3.radiance.elf"
+      ]
+    },
+    {
+      "name": "geglu",
+      "radiance_elfs": [
+        "kernel.radiance.elf"
+      ]
+    },
+    {
+      "name": "gemm_mxgemmini",
+      "radiance_elfs": [
+        "mxgemm.radiance.elf",
+        "mxgemm_singletile.radiance.elf",
+        "mxgemm.fp8.singletile.tm128tn128tk128.requant.radiance.elf",
+        "mxgemm.fp8.singletile.tm64tn64tk64.fullout.radiance.elf",
+        "mxgemm.fp8.singletile.tm64tn64tk64.requant.radiance.elf",
+        "mxgemm.fp8.m64n64k128.tm64tn64tk64.fullout.radiance.elf",
+        "mxgemm.fp8.m128n128k512.tm128tn128tk128.fullout.radiance.elf",
+        "mxgemm.fp8.m128n128k256.tm128tn128tk128.fullout.radiance.elf",
+        "mxgemm.fp8.m128n128k128.tm128tn128tk128.fullout.radiance.elf",
+        "mxgemm.fp4.singletile.tm64tn64tk64.fullout.radiance.elf",
+        "mxgemm.fp4.m64n64k128.tm64tn64tk64.fullout.radiance.elf",
+        "mxgemm.fp4.singletile.tm64tn64tk64.requant.radiance.elf",
+        "mxgemm.fp4.singletile.tm128tn128tk128.fullout.radiance.elf",
+        "mxgemm.fp4.m128n128k256.tm128tn128tk128.fullout.radiance.elf",
+        "mxgemm.fp4.singletile.tm128tn128tk128.requant.radiance.elf",
+        "mxgemm.fp8.m128n128k2048.tm128tn128tk128.fullout.radiance.elf",
+        "mxgemm.fp8.m128n128k5632.tm128tn128tk128.fullout.radiance.elf",
+        "mxgemm.fp6.m128n128k2048.tm128tn128tk128.fullout.radiance.elf",
+        "mxgemm.fp4.m128n128k2048.tm128tn128tk128.fullout.radiance.elf",
+        "mxgemm.fp4.m128n128k5632.tm128tn128tk128.fullout.radiance.elf",
+        "mxgemm.simt_contention.radiance.elf",
+        "requant.radiance.elf"
+      ]
+    },
+    {
+      "name": "gemm_mxgemmini_ws",
+      "radiance_elfs": [
+        "kernel.radiance.elf"
+      ]
+    },
+    {
+      "name": "gemm_mxgemmini_ws_downproj_fp4",
+      "radiance_elfs": [
+        "kernel.radiance.elf"
+      ]
+    },
+    {
+      "name": "gemm_mxgemmini_ws_restream",
+      "radiance_elfs": [
+        "kernel.radiance.elf"
+      ]
+    },
+    {
+      "name": "gemm_simt",
+      "radiance_elfs": [
+        "kernel.radiance.elf",
+        "kernel_bounded.radiance.elf",
+        "kernel_strict.radiance.elf",
+        "kernel_ilp1.radiance.elf",
+        "kernel_ilp1_fence.radiance.elf",
+        "kernel_tn4.radiance.elf",
+        "kernel_tn4_fence.radiance.elf"
+      ]
+    },
+    {
+      "name": "gemma_4norm",
+      "radiance_elfs": [
+        "kernel.radiance.elf"
+      ]
+    },
+    {
+      "name": "gemv",
+      "radiance_elfs": [
+        "kernel.radiance.elf"
+      ]
+    },
+    {
+      "name": "gemv_batched_fp4_m128",
+      "radiance_elfs": [
+        "kernel.radiance.elf"
+      ]
+    },
+    {
+      "name": "gemv_batched_fp8_m128",
+      "radiance_elfs": [
+        "kernel.radiance.elf"
+      ]
+    },
+    {
+      "name": "gemv_batched_fp8_m32",
+      "radiance_elfs": [
+        "kernel.radiance.elf"
+      ]
+    },
+    {
+      "name": "gemv_batched_fp8_m64",
+      "radiance_elfs": [
+        "kernel.radiance.elf"
+      ]
+    },
+    {
+      "name": "idle",
+      "radiance_elfs": [
+        "idle.radiance.elf"
+      ]
+    },
+    {
+      "name": "launch",
+      "radiance_elfs": [
+        "kernel.radiance.elf"
+      ]
+    },
+    {
+      "name": "layernorm",
+      "radiance_elfs": [
+        "kernel.radiance.elf"
+      ]
+    },
+    {
+      "name": "logit_softcap",
+      "radiance_elfs": [
+        "kernel.radiance.elf"
+      ]
+    },
+    {
+      "name": "nearn",
+      "radiance_elfs": [
+        "kernel.radiance.elf"
+      ]
+    },
+    {
+      "name": "patch_embed",
+      "radiance_elfs": [
+        "kernel.radiance.elf"
+      ]
+    },
+    {
+      "name": "pointerchase",
+      "radiance_elfs": [
+        "kernel.radiance.elf"
+      ]
+    },
+    {
+      "name": "qkv_bias",
+      "radiance_elfs": [
+        "kernel.radiance.elf"
+      ]
+    },
+    {
+      "name": "reg_stack_test",
+      "radiance_elfs": [
+        "kernel.radiance.elf"
+      ]
+    },
+    {
+      "name": "rickroll",
+      "radiance_elfs": [
+        "rickroll.radiance.elf"
+      ]
+    },
+    {
+      "name": "rmsnorm",
+      "radiance_elfs": [
+        "rmsnorm.radiance.elf"
+      ]
+    },
+    {
+      "name": "rmsnorm_gemma",
+      "radiance_elfs": [
+        "kernel.radiance.elf"
+      ]
+    },
+    {
+      "name": "rmsnorm_qkv_fused",
+      "radiance_elfs": [
+        "kernel.radiance.elf"
+      ]
+    },
+    {
+      "name": "rope_qkv_fused",
+      "radiance_elfs": [
+        "kernel.radiance.elf"
+      ]
+    },
+    {
+      "name": "saxpy",
+      "radiance_elfs": [
+        "kernel.radiance.elf"
+      ]
+    },
+    {
+      "name": "sfilter",
+      "radiance_elfs": [
+        "kernel.radiance.elf"
+      ]
+    },
+    {
+      "name": "sgemm_gemmini",
+      "radiance_elfs": [
+        "sgemm_gemmini.radiance.elf"
+      ]
+    },
+    {
+      "name": "sgemm_gemmini_dma",
+      "radiance_elfs": [
+        "sgemm_gemmini_dma.radiance.elf"
+      ]
+    },
+    {
+      "name": "sgemm_gemmini_duo",
+      "radiance_elfs": [
+        "sgemm_gemmini_duo.radiance.elf"
+      ]
+    },
+    {
+      "name": "sgemm_muon",
+      "radiance_elfs": [
+        "sgemm_muon.radiance.elf"
+      ]
+    },
+    {
+      "name": "sgemm_tcore",
+      "radiance_elfs": [
+        "sgemm_tcore.radiance.elf"
+      ]
+    },
+    {
+      "name": "sgemm_wg",
+      "radiance_elfs": [
+        "sgemm_wg.radiance.elf"
+      ]
+    },
+    {
+      "name": "simt_quant",
+      "radiance_elfs": [
+        "kernel.radiance.elf"
+      ]
+    },
+    {
+      "name": "softmax",
+      "radiance_elfs": [
+        "kernel.radiance.elf"
+      ]
+    },
+    {
+      "name": "spatter",
+      "radiance_elfs": [
+        "kernel.radiance.elf"
+      ]
+    },
+    {
+      "name": "special_fn",
+      "radiance_elfs": [
+        "special_fn.radiance.elf"
+      ]
+    },
+    {
+      "name": "spin",
+      "radiance_elfs": [
+        "kernel.radiance.elf"
+      ]
+    },
+    {
+      "name": "stream",
+      "radiance_elfs": [
+        "kernel.radiance.elf"
+      ]
+    },
+    {
+      "name": "swiglu",
+      "radiance_elfs": [
+        "kernel.radiance.elf"
+      ]
+    },
+    {
+      "name": "tapeout_template",
+      "radiance_elfs": [
+        "kernel.radiance.elf"
+      ]
+    },
+    {
+      "name": "test_backing_L2_fill",
+      "radiance_elfs": [
+        "kernel.radiance.elf"
+      ]
+    },
+    {
+      "name": "test_backing_mem",
+      "radiance_elfs": [
+        "kernel.radiance.elf"
+      ]
+    },
+    {
+      "name": "ubench",
+      "radiance_elfs": [
+        "flops_fp16.radiance.elf",
+        "flops_fp32.radiance.elf",
+        "flops_int.radiance.elf",
+        "flops_exp_fp16.radiance.elf",
+        "bandwidth_gmem_lw_l0hit.radiance.elf",
+        "bandwidth_gmem_sw_l0hit.radiance.elf",
+        "bandwidth_smem_lw.radiance.elf",
+        "bandwidth_smem_sw.radiance.elf"
+      ]
+    },
+    {
+      "name": "unaligned",
+      "radiance_elfs": [
+        "unaligned.radiance.elf"
+      ]
+    },
+    {
+      "name": "vecadd",
+      "radiance_elfs": [
+        "kernel.radiance.elf",
+        "kernel_ilp2.radiance.elf",
+        "kernel_ilp4.radiance.elf",
+        "kernel_ilp4_ou2.radiance.elf",
+        "kernel_ilp8.radiance.elf",
+        "kernel_ilp2_w8.radiance.elf",
+        "kernel_ilp4_w2.radiance.elf",
+        "kernel_ilp4_w8.radiance.elf"
+      ]
+    },
+    {
+      "name": "vecaddx",
+      "radiance_elfs": [
+        "vecaddx.radiance.elf"
+      ]
+    }
+  ]
+}

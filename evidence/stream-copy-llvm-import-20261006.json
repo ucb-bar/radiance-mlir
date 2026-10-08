@@ -5,7 +5,7 @@
     "schema": "radiance_llvm_reference_import.v1",
     "status": "native_object_emitted",
     "scope": "LLVM dialect source-equivalence reference; no typed Muon/MX lowering",
-    "input_llvm": "/scratch/agustin/projects/muon-mlir/build/stream_full_timing_all/copy/source.ll",
+    "input_llvm": "build/stream_full_timing_all/copy/source.ll",
     "input_sha256": "457f0c976150467b999f1807c31fa0bf5e4a2874ba7ea3ea050d2d845689d6fe",
     "mlir_sha256": "9214a7cb235f06e35f864132d8459059bcaf56f8d85fb9177187b9ff0acf0d84",
     "exported_llvm_sha256": "7b68c65d1a64b74d8fd783295c6459dd1f4a459c9d0c28b509e691f516520846",

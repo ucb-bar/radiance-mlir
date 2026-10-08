@@ -1,5 +1,11 @@
 # Radiance MLIR composition
 
+The [lowering architecture contract](docs/lowering_architecture.md) records
+target ownership and the source-kernel evidence gate. Run
+`python3 tools/check_lowering_contract.py` to validate current claims;
+`--require-complete-claims` reports the remaining source coverage gap; it is
+an evidence metadata check, not an execution test.
+
 This out-of-tree package composes `muon-mlir` and `mx-gemmini-mlir`. It owns
 the selected SoC profile and cross-engine ordering checks. It does **not**
 define a third compute dialect. Merlin remains target agnostic; its existing
@@ -47,13 +53,13 @@ bitstream archive, the embedded `.bit` payload, and device tree by SHA-256.
 The source checkout is dirty
 and the exact build-time diff is unavailable, so the listed source files are
 a candidate closure, not proof of bitstream-to-source equivalence. The
-`--chipyard` argument for this profile must point to Nico's checkout (here
-`/scratch/nicorakela/chipyard`); Agustin's separate Chipyard checkout has a
-different FireChip configuration file and correctly fails the hash check.
+`--chipyard` argument for this profile must point to the source checkout
+matching the listed file hashes; another checkout with a different FireChip
+configuration correctly fails the hash check.
 Merlin's existing Phase 0 Radiance descriptor names `RadianceMuonConfig`
 and explicitly describes a one-core elaboration. It is a different hardware
 scope from this two-core U250 profile. A Phase 0 result from that descriptor
-must not be relabeled as evidence for Nico's FireSim configuration; a new
+must not be relabeled as evidence for the pinned FireSim configuration; a new
 source-bound Phase 0 contract must select this exact SoC profile and artifact
 identity before those results can be compared.
 `single-cluster-full-mx.yaml` is a provisional simulator profile for FP6
@@ -69,7 +75,7 @@ cmake -S . -B build -DMLIR_DIR=/path/to/llvm-install/lib/cmake/mlir \
 cmake --build build -j
 python3 tests/run_verify.py --radiance-opt build/tools/radiance-opt
 python3 check_ir.py tests/composed.mlir \
-  --profile profiles/u250-e4m3.yaml --chipyard /path/to/nico/chipyard \
+  --profile profiles/u250-e4m3.yaml --chipyard /path/to/matching/chipyard \
   --device-tree /path/to/device-tree.dts \
   --bitstream-archive /path/to/bitstream.tar.gz \
   --radiance-opt build/tools/radiance-opt

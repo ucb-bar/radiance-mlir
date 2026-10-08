@@ -1,0 +1,14 @@
+name: lowering-contract
+on:
+  pull_request:
+  push:
+    branches: [handwritten-implementation]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate route and evidence contracts
+        run: |
+          python3 tools/check_lowering_contract.py
+          python3 -m unittest discover -s tests -p 'test_lowering_contract.py'
