@@ -75,15 +75,28 @@ python3 check_ir.py tests/composed.mlir \
   --radiance-opt build/tools/radiance-opt
 ```
 
-The profile pass requires the selected profile name and file SHA-256 as
-explicit options and matches both to module attributes. For MX accumulator
+The profile pass requires the selected profile name, file SHA-256, MX formats,
+and QuantLut availability as explicit options and matches the identity to
+module attributes. `check_ir.py` supplies those options from the source and
+artifact checked profile. Direct pass invocations must supply the same
+validated values; the U250 pass additionally refuses any capabilities beyond
+FP8 without QuantLut. For MX accumulator
 readout into shared memory, it requires a same-site MX wait, a Muon shared
 memory fence, and a Muon barrier in that order before control leaves the
-block or a Muon launch begins. A following MX use after a Muon launch requires
+region or a Muon launch begins. A following MX use after a Muon launch requires
 a Muon barrier and shared-memory fence in that order. These checks operate
-within one block; control-flow and alias analysis are still needed before
-general mixed-engine execution. It rejects FP4/FP6 and QuantLut use under
-the pinned U250 profile.
+across reachable CFG edges and reject conflicting states at branch joins.
+Nested regions with an outstanding handoff and buffer aliasing still require
+effect analysis before general mixed-engine execution. It rejects FP4/FP6
+and QuantLut use under the pinned U250 profile.
+
+The shared low-level MX command representation in `mx-gemmini-mlir` emits
+either Rocket RoCC instructions or the Muon-side MMIO gateway stores. Its
+profile checked scale/LUT uploads are a physical transfer boundary, not yet
+a complete contraction schedule. A future mixed executable bundle must name
+the Muon device image, MX issuer, host launch ABI, shared buffers, and ordered
+steps against the same profile digest. Merlin's target-neutral artifact bundle
+schema can carry that composition without adding a third compute dialect.
 `tests/mixed_attention.mlir` shows an FP8 QK contraction, MX-to-Muon
 shared-memory handoff, Muon callback launch for softmax/quantization, and
 FP8 PV contraction. Its callback and MX command lowering are external, so

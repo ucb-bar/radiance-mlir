@@ -22,7 +22,9 @@ def main() -> int:
     digest = _sha256(args.profile)
     subprocess.run(
         [str(args.radiance_opt),
-         f"--radiance-verify-profile=selected-name={selected['name']} selected-sha256={digest}",
+         f"--radiance-verify-profile=selected-name={selected['name']} "
+         f"selected-sha256={digest} selected-formats={','.join(selected['mx']['formats'])} "
+         f"selected-lut={'true' if selected['mx'].get('lut') else 'false'}",
          str(args.input), "-o", "/dev/null"], check=True)
     print(f"IR verified against {selected['name']} ({digest}); status={selected['status']}")
     return 0
