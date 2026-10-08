@@ -1,5 +1,7 @@
 # Radiance MLIR composition
 
+Licensed under Apache-2.0; see [LICENSE](LICENSE).
+
 The [lowering architecture contract](docs/lowering_architecture.md) records
 target ownership and the source-kernel evidence gate. Run
 `python3 tools/check_lowering_contract.py` to validate current claims;
