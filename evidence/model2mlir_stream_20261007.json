@@ -1,0 +1,61 @@
+{
+  "schema": "radiance_model2mlir_stream_capture.v1",
+  "status": "captured_and_parsed_not_target_lowered",
+  "source_revision": "a27f6abd24830fdc7999d872d170ab778f1e662e",
+  "source_run_sha256": "ea709456f78e3c06934b6eb626bd9077257404c0015db00ff015bb3abdafa2d3",
+  "model2mlir_revision": "7915e23475c6db446a3c404847b11e8bc72c8a27",
+  "model2mlir_source_tree_sha256": "3a2c90ee67c2341ab74b2a1640ae2b3f2a3c2bd443fd8d2089c6818fc21f041a",
+  "model2mlir_worktree_status": [],
+  "mlir_opt_sha256": "c82b34f2100784f6191c496e3406c79db9cdbcca4cd279646565e5fb56d07d7a",
+  "fusion_pipeline": [
+    "linalg-fuse-elementwise-ops",
+    "canonicalize",
+    "cse"
+  ],
+  "loop_pipeline": [
+    "one-shot-bufferize=bufferize-function-boundaries",
+    "convert-linalg-to-parallel-loops"
+  ],
+  "cases": [
+    {
+      "kind": "copy",
+      "elements_compared": 1048576,
+      "expected_digest": "49fabae987622325",
+      "captured_mlir_sha256": "721aee94fedf8dd247be67e8993b80d3db01cfbc819106e37660942dfb42832b",
+      "opaque_calls": {},
+      "fused_mlir_sha256": "f9cd4f766acf01a169db01ed3734af312a229d8b22d34d2f5d33421133100270",
+      "parallel_mlir_sha256": "f1577ad2ea447fabb278bda5619936facff433cb229fe8d2d339c5da96670e7f",
+      "model2mlir_path": "fx_importer"
+    },
+    {
+      "kind": "scale",
+      "elements_compared": 1048576,
+      "expected_digest": "6e48e2288e622325",
+      "captured_mlir_sha256": "7489d8f07fc9f1d9e61fe4c22affce1bff59345a1ecfd812ed2576bb54113a7b",
+      "opaque_calls": {},
+      "fused_mlir_sha256": "5d9b566ffb7d8f3d9e36eb1ca47631320ef94796b2766d438420f834f06dc67d",
+      "parallel_mlir_sha256": "6c062933919f6cc57a1b6bd101b5c03f1bae61dc324c8b2481821ff4c966fa7c",
+      "model2mlir_path": "fx_importer"
+    },
+    {
+      "kind": "add",
+      "elements_compared": 1048576,
+      "expected_digest": "8bf67ebb39622325",
+      "captured_mlir_sha256": "cd20293c54c307cf5bffd182d3721adcf10795298036d8ca532aca0eec92cd68",
+      "opaque_calls": {},
+      "fused_mlir_sha256": "75f1af824f4b3ce157616ec78f007532ef5adfbacc5e08dded522d8498b7c939",
+      "parallel_mlir_sha256": "9e9c47bb6d7651e46cb1f7e8679384bd3805ec30ebcde11123faa65ab986150e",
+      "model2mlir_path": "fx_importer"
+    },
+    {
+      "kind": "triad",
+      "elements_compared": 1048576,
+      "expected_digest": "44cd90308b622325",
+      "captured_mlir_sha256": "de51cdd4190247d6d61518395db8da25c4afa7eec01ec8fb1996d24cd07423b3",
+      "opaque_calls": {},
+      "fused_mlir_sha256": "c3c103b429b660dc3ef9f40af9026edb026a4796bd5666370617566c3beaab18",
+      "parallel_mlir_sha256": "ec5ba954e5e4a4252de697d7916c6fe6e0b0ee8c6e3feac16a90c23382622ea7",
+      "model2mlir_path": "fx_importer"
+    }
+  ]
+}

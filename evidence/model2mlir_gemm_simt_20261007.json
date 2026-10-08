@@ -1,0 +1,22 @@
+{
+  "schema": "radiance_model2mlir_gemm_capture.v1",
+  "status": "captured_and_parsed_not_target_lowered",
+  "source_revision": "a27f6abd24830fdc7999d872d170ab778f1e662e",
+  "source_generator_sha256": "08af0ca1be489ca2f5e5f85f42e3ceab9a4167c060d7bd8ea88e1c96c38a992f",
+  "source_expected_sha256": "27d567b446ffbabce113b1ebb1a220cd4ddb997b6c166c8aba49093677c63bb7",
+  "model2mlir_revision": "7915e23475c6db446a3c404847b11e8bc72c8a27",
+  "model2mlir_branch": "docs/publication-approval-rule-20261007",
+  "model2mlir_source_tree_sha256": "3a2c90ee67c2341ab74b2a1640ae2b3f2a3c2bd443fd8d2089c6818fc21f041a",
+  "model2mlir_worktree_status": [],
+  "captured_mlir_sha256": "f8da96683602b852f6cfecb6416655b0b7ed837108da513afb3ccb1c1634e42e",
+  "input_a_sha256": "c603dedef88a6d837aa207285ecede9ca624c45dc7b33bcba31669a0f91efdce",
+  "input_b_sha256": "f394cf58456a3b08123e2c327d2e42378e24f13f7c33e984f228b90a3f8cb988",
+  "output_words_compared": 4096,
+  "model2mlir_path": "fx_importer",
+  "opaque_calls": {},
+  "parsers": [
+    "muon-opt",
+    "mx-gemmini-opt",
+    "radiance-opt"
+  ]
+}
