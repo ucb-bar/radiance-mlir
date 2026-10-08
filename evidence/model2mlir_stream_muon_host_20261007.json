@@ -1,0 +1,40 @@
+{
+  "schema": "radiance_model2mlir_stream_muon_host.v1",
+  "status": "muon_callback_full_output_host_execution_not_device",
+  "source_revision": "a27f6abd24830fdc7999d872d170ab778f1e662e",
+  "source_run_sha256": "ea709456f78e3c06934b6eb626bd9077257404c0015db00ff015bb3abdafa2d3",
+  "capture_receipt_sha256": "9bb3a0bf4d832fd0e1283eb46d9cf7e25efaaae9468493d521b6e1b47e372350",
+  "model2mlir_revision": "7915e23475c6db446a3c404847b11e8bc72c8a27",
+  "muon_opt_sha256": "94312508422a53427e54fdada27e4b9311f97b50418ed921363d90eb144aa001",
+  "harness_sha256": "cb3b25446ebbbdb998822e801a7e417c4693eb69c5842028400bcc76a6cf6240",
+  "cases": [
+    {
+      "kind": "copy",
+      "words_compared": 1048576,
+      "digest": "49fabae987622325",
+      "lowered_mlir_sha256": "47d47206b0e724eeffd44c90ab439fc5db409ae8da938afe165e7c057307a6b2",
+      "llvm_ir_sha256": "e31769076bd45bde60c7ae20ee9b738e441268d7a8e7403f24ff58ec2a14556e"
+    },
+    {
+      "kind": "scale",
+      "words_compared": 1048576,
+      "digest": "6e48e2288e622325",
+      "lowered_mlir_sha256": "af7bd607f5cfbf5f5789e3577d9caa35d6de454fee425e086f06020aff080174",
+      "llvm_ir_sha256": "8317ea8944ea8d45119cc8d15b857bea50c58d0b1836f17228a42e925b136760"
+    },
+    {
+      "kind": "add",
+      "words_compared": 1048576,
+      "digest": "8bf67ebb39622325",
+      "lowered_mlir_sha256": "33979b799c759abaada275f25b0101224e59f19fb7f5b6304e11d2fbcbb3243f",
+      "llvm_ir_sha256": "8696046ad44041b9d2e40a0a655b236da21bcacc9390a2f06fa93304570fea78"
+    },
+    {
+      "kind": "triad",
+      "words_compared": 1048576,
+      "digest": "44cd90308b622325",
+      "lowered_mlir_sha256": "0663f805fdde12fe747e2ae769fd35e38c259fe3372030ca2196e06496074f68",
+      "llvm_ir_sha256": "d5f367256673191b14da9d68b193165526eca26b5b2f4c25c82f71bd65d5d392"
+    }
+  ]
+}
