@@ -3,6 +3,8 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import re
+import sys
 import tarfile
 from pathlib import Path
 
@@ -35,7 +37,83 @@ def load_profile(path: Path) -> dict:
         raise ProfileError("unsupported Muon warp width")
     if not mx.get("formats"):
         raise ProfileError("MX formats must be declared")
+    if not isinstance(mx["formats"], list) or any(fmt not in {"mxfp4", "mxfp6", "mxfp8"}
+                                                     for fmt in mx["formats"]):
+        raise ProfileError("unknown legacy MX format")
+    named = mx.get("named_formats")
+    if named is not None and (not isinstance(named, list) or not named or
+                              any(fmt not in {"fp4_e2m1", "fp6_e2m3", "fp6_e3m2",
+                                               "fp8_e4m3", "fp8_e5m2"} for fmt in named)):
+        raise ProfileError("unknown named MX format")
+    for feature in ("lut", "vpu", "spad_requant"):
+        if feature in mx and type(mx[feature]) is not bool:
+            raise ProfileError(f"MX {feature} must be Boolean")
+    target_digest = mx.get("target_profile_sha256")
+    if target_digest is not None and (not isinstance(target_digest, str) or
+                                      re.fullmatch(r"[0-9a-f]{64}", target_digest) is None):
+        raise ProfileError("MX target profile digest must be lowercase SHA-256")
+    if (mx.get("vpu", False) or mx.get("spad_requant", False)) and target_digest is None:
+        raise ProfileError("MX VPU/SPAD_REQUANT needs a source-bound target profile digest")
+    if target_digest is not None and (not isinstance(mx.get("gemmini_config"), str) or
+                                      not mx["gemmini_config"] or named is None):
+        raise ProfileError("source-bound MX target needs a Gemmini config and named formats")
     return profile
+
+
+def mlir_pass_options(profile: dict, digest: str) -> str:
+    """Pass only capabilities from a validated SoC profile to radiance-opt."""
+    mx = profile["mx"]
+    legacy_to_named = {"mxfp4": "fp4_e2m1", "mxfp6": "fp6_e3m2", "mxfp8": "fp8_e4m3"}
+    named = mx.get("named_formats") or [legacy_to_named[fmt] for fmt in mx["formats"]]
+    fields = [f"selected-name={profile['name']}", f"selected-sha256={digest}",
+              f"selected-formats={','.join(mx['formats'])}",
+              f"selected-named-formats={','.join(named)}",
+              f"selected-lut={str(mx.get('lut', False)).lower()}",
+              f"selected-vpu={str(mx.get('vpu', False)).lower()}",
+              f"selected-spad-requant={str(mx.get('spad_requant', False)).lower()}"]
+    if mx.get("target_profile_sha256"):
+        fields.append(f"selected-mx-profile-sha256={mx['target_profile_sha256']}")
+    return "--radiance-verify-profile=" + " ".join(fields)
+
+
+def verify_mx_target(profile: dict, mx_source: Path | None,
+                     target_json: Path | None, rtl_root: Path | None) -> None:
+    """Recompute the selected MX profile from the current Gemmini RTL sources."""
+    mx = profile["mx"]
+    expected = mx.get("target_profile_sha256")
+    if expected is None:
+        return
+    if mx_source is None or target_json is None or rtl_root is None:
+        raise ProfileError("source-bound MX target requires --mx-mlir-source, "
+                           "--mx-target-profile and --mx-rtl-root")
+    if not (mx_source / "mx_gemmini_support/target_profile.py").is_file():
+        raise ProfileError("MX MLIR source path lacks the target profile provider")
+    sys.path.insert(0, str(mx_source.resolve()))
+    try:
+        from mx_gemmini_support import target_profile as provider
+        if Path(provider.__file__).resolve() != (mx_source / "mx_gemmini_support/target_profile.py").resolve():
+            raise ProfileError("loaded MX profile provider differs from --mx-mlir-source")
+        target = provider.load_profile(target_json, rtl_root=rtl_root)
+    except (OSError, ValueError) as exc:
+        raise ProfileError(f"MX target differs from selected RTL sources: {exc}") from exc
+    finally:
+        sys.path.pop(0)
+    if provider.profile_sha256(target) != expected:
+        raise ProfileError("MX target profile digest differs from selected SoC profile")
+    if target["gemmini_config"] != mx["gemmini_config"]:
+        raise ProfileError("MX Gemmini config differs from selected SoC profile")
+    for feature in ("lut", "vpu", "spad_requant"):
+        if bool(target["resources"][feature]) != mx.get(feature, False):
+            raise ProfileError(f"MX {feature} differs from selected RTL target profile")
+    legal_formats = {item[key] for item in target["legal_compute"]
+                     for key in ("activation_format", "weight_format")}
+    legal_formats.update(target["candidate_output_modes"])
+    if not set(mx.get("named_formats", [])).issubset(legal_formats):
+        raise ProfileError("named MX formats exceed selected RTL target profile")
+    precision = {"mxfp4": "fp4_", "mxfp6": "fp6_", "mxfp8": "fp8_"}
+    if any(not any(fmt.startswith(precision[legacy]) for fmt in legal_formats)
+           for legacy in mx["formats"]):
+        raise ProfileError("legacy MX formats exceed selected RTL target profile")
 
 
 def require_format(profile: dict, fmt: str, *, lut: bool = False) -> None:

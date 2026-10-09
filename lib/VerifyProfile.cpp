@@ -23,8 +23,16 @@ public:
       llvm::cl::desc("SHA-256 of the validated SoC profile file"), llvm::cl::init("")};
   Option<std::string> selectedFormats{*this, "selected-formats",
       llvm::cl::desc("comma-separated MX formats from the validated SoC profile"), llvm::cl::init("")};
+  Option<std::string> selectedNamedFormats{*this, "selected-named-formats",
+      llvm::cl::desc("comma-separated named MX formats from the validated SoC profile"), llvm::cl::init("")};
   Option<bool> selectedLut{*this, "selected-lut",
       llvm::cl::desc("whether the validated SoC profile has an MX QuantLut"), llvm::cl::init(false)};
+  Option<bool> selectedVpu{*this, "selected-vpu",
+      llvm::cl::desc("whether the validated SoC profile has an MX VPU"), llvm::cl::init(false)};
+  Option<bool> selectedSpadRequant{*this, "selected-spad-requant",
+      llvm::cl::desc("whether the validated SoC profile has SPAD_REQUANT"), llvm::cl::init(false)};
+  Option<std::string> selectedMxProfileDigest{*this, "selected-mx-profile-sha256",
+      llvm::cl::desc("source-bound MX target profile digest"), llvm::cl::init("")};
   StringRef getArgument() const final { return "radiance-verify-profile"; }
   StringRef getDescription() const final { return "Check composed Muon/MX IR against the selected Radiance SoC profile"; }
   void runOnOperation() override {
@@ -35,12 +43,6 @@ public:
         !name || name.getValue() != selectedName ||
         !digest || digest.getValue() != selectedDigest) {
       module.emitError("module profile does not match the selected profile name and SHA-256");
-      signalPassFailure();
-      return;
-    }
-    if (name.getValue() != "u250-e4m3" &&
-        name.getValue() != "single-cluster-full-mx") {
-      module.emitError("requires a selected radiance.profile");
       signalPassFailure();
       return;
     }
@@ -61,23 +63,74 @@ public:
       }
       admittedFormats.insert(format.str());
     }
+    SmallVector<StringRef> namedFormatNames;
+    StringRef(selectedNamedFormats.getValue()).split(namedFormatNames, ',');
+    std::set<std::string> admittedNamedFormats;
+    for (StringRef format : namedFormatNames) {
+      if (format != "fp4_e2m1" && format != "fp6_e2m3" &&
+          format != "fp6_e3m2" && format != "fp8_e4m3" &&
+          format != "fp8_e5m2") {
+        module.emitError("selected SoC profile has an unsupported named MX format");
+        signalPassFailure();
+        return;
+      }
+      admittedNamedFormats.insert(format.str());
+    }
     if (admittedFormats.empty() || admittedFormats.size() != formatNames.size() ||
+        admittedNamedFormats.empty() || admittedNamedFormats.size() != namedFormatNames.size() ||
         (name.getValue() == "u250-e4m3" &&
-         (admittedFormats != std::set<std::string>{"mxfp8"} || selectedLut))) {
+         (admittedFormats != std::set<std::string>{"mxfp8"} ||
+          admittedNamedFormats != std::set<std::string>{"fp8_e4m3"} ||
+          selectedLut || selectedVpu || selectedSpadRequant))) {
       module.emitError("selected MX capabilities disagree with the bound SoC profile");
       signalPassFailure();
       return;
     }
+    if (selectedVpu || selectedSpadRequant) {
+      auto mxDigest = module->getAttrOfType<StringAttr>("mx.profile_sha256");
+      if (selectedMxProfileDigest.size() != 64 ||
+          !llvm::all_of(selectedMxProfileDigest.getValue(), [](char c) {
+            return std::isxdigit(static_cast<unsigned char>(c));
+          }) || !mxDigest || mxDigest.getValue() != selectedMxProfileDigest) {
+        module.emitError("MX VPU/SPAD_REQUANT requires the selected source-bound MX profile digest");
+        signalPassFailure();
+        return;
+      }
+    }
     bool failed = false;
     module.walk([&](Operation *op) {
       if (!op->getName().getStringRef().starts_with("mx_gemmini.")) return;
+      StringRef opName = op->getName().getStringRef();
+      if (selectedVpu || selectedSpadRequant) {
+        auto localProfile = op->getAttrOfType<StringAttr>("profile_sha256");
+        if (!localProfile || localProfile.getValue() != selectedMxProfileDigest) {
+          op->emitError("MX operation differs from the selected source-bound profile digest");
+          failed = true;
+        }
+      }
       auto format = op->getAttrOfType<StringAttr>("format");
       if (format && !admittedFormats.count(format.getValue().str())) {
         op->emitError("MX format is absent from the selected SoC profile");
         failed = true;
       }
-      if (!selectedLut && op->getName().getStringRef() == "mx_gemmini.load_lut") {
+      for (StringRef field : {"element_format", "activation_format", "weight_format", "output_format"}) {
+        if (auto named = op->getAttrOfType<StringAttr>(field)) {
+          if (!admittedNamedFormats.count(named.getValue().str())) {
+            op->emitError("named MX format is absent from the selected SoC profile: ") << named.getValue();
+            failed = true;
+          }
+        }
+      }
+      if (!selectedLut && opName == "mx_gemmini.load_lut") {
         op->emitError("the selected SoC profile has no QuantLut");
+        failed = true;
+      }
+      if (!selectedVpu && opName == "mx_gemmini.vpu_execute") {
+        op->emitError("the selected SoC profile has no MX VPU");
+        failed = true;
+      }
+      if (!selectedSpadRequant && opName == "mx_gemmini.spad_requant") {
+        op->emitError("the selected SoC profile has no SPAD_REQUANT");
         failed = true;
       }
     });
