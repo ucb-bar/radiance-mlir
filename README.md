@@ -30,7 +30,7 @@ their loops across Muon lanes, and matches every source output word in host
 execution. It also outlines and runs the captured Spatter Gather read trace
 through a Muon callback, matching all 262,144 source reads. The captured
 SIMT GEMM also runs as a staged Muon callback with barriers and matches all
-4,096 source BF16 golden words in host execution. MX commands and
+4,096 source BF16 golden words in host execution. Full MX contraction commands and
 mixed-engine execution remain to be implemented.
 
 Use the `handwritten-implementation` branches of both `muon-mlir` and
@@ -84,11 +84,16 @@ python3 check_ir.py tests/composed.mlir \
 ```
 
 The profile pass requires the selected profile name, file SHA-256, MX formats,
-and QuantLut availability as explicit options and matches the identity to
+named element formats, QuantLut, VPU, and scratchpad requantization capabilities
+as explicit options and matches the identity to
 module attributes. `check_ir.py` supplies those options from the source and
 artifact checked profile. Direct pass invocations must supply the same
 validated values; the U250 pass additionally refuses any capabilities beyond
-FP8 without QuantLut. For MX accumulator
+E4M3 FP8 without QuantLut, VPU, or scratchpad requantization. A VPU profile
+must select a source-bound MX target JSON, its Gemmini config and digest;
+`check_ir.py` recomputes it from the selected RTL checkout before accepting
+the IR. See [VPU profile admission](docs/vpu_profile_admission.md) for the
+current bitstream evidence and the required CLI arguments. For MX accumulator
 readout into shared memory, it requires a same-site MX wait, a Muon shared
 memory fence, and a Muon barrier in that order before control leaves the
 region or a Muon launch begins. A following MX use after a Muon launch requires
@@ -110,9 +115,11 @@ shared-memory handoff, Muon callback launch for softmax/quantization, and
 FP8 PV contraction. Its callback and MX command lowering are external, so
 the test checks structure and provenance rather than numerical execution.
 
-The available implementation verifies IR composition. Muon-only original-size
+The available implementation verifies IR composition. The MX package also
+lowers physical VPU and scratchpad requantization MLIR ops to a Rocket RoCC
+issuer for a matching source-bound MX profile. Muon-only original-size
 STREAM and Spatter Gather comparisons, plus fused STREAM RV64/RV32 guest
-image construction, live in `muon-mlir`; MX command lowering, quantized
+image construction, live in `muon-mlir`; full MX contraction scheduling, quantized
 attention dataflow, mixed-engine
 performance parity, and FPGA guest execution remain open. No existing
 handwritten kernel result is treated as a compiler result or as a universal
